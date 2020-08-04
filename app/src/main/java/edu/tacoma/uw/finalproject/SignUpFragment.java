@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import edu.tacoma.uw.finalproject.model.User;
 
@@ -54,7 +53,6 @@ public class SignUpFragment extends Fragment {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "im in", Toast.LENGTH_SHORT).show();
                 String firstN = firstNEditText.getText().toString();
                 String lastN = lastNEditText.getText().toString();
                 String userN = userNEditText.getText().toString();

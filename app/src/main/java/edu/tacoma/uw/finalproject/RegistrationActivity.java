@@ -65,34 +65,23 @@ public class RegistrationActivity extends AppCompatActivity
             String response = "";
             HttpURLConnection urlConnection = null;
             for (String url : urls) {
-                Log.i("here0", "here0");
                 try {
-                    Log.i("here1", "here1");
                     URL urlObject = new URL(url);
                     urlConnection = (HttpURLConnection) urlObject.openConnection();
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setRequestProperty("Content-Type", "application/json");
                     urlConnection.setDoOutput(true);
-                    Log.i("here", "here3");
                     OutputStream outputStream = urlConnection.getOutputStream();
-                    Log.i("here", "here4");
                     OutputStreamWriter wr =
                             new OutputStreamWriter(outputStream);
-                    Log.i("here", "here5");
 
 
 
                     // For Debugging
-                    Log.i("here", "here66");
                     Log.i(SIGN_UP, mUserJSON.toString());
-                    Log.i("here", "here7");
                     wr.write(mUserJSON.toString());
-                    Log.i("here", "here8");
                     wr.flush();
                     wr.close();
-
-
-                    Log.i("here", "here");
 
                     InputStream content = urlConnection.getInputStream();
 
@@ -120,12 +109,8 @@ public class RegistrationActivity extends AppCompatActivity
             return;
         }
         try {
-            Log.i("here", "here10");
-            Log.i("here", s);
 
-            // TODO CANT PASS S INTO JSONOBJECT
             JSONObject jsonObject = new JSONObject(s);
-            Log.i("here", "here11");
             if (jsonObject.getBoolean("success")) {
                 Toast.makeText(getApplicationContext(), "RegistrationActivity successful"
                         , Toast.LENGTH_SHORT).show();

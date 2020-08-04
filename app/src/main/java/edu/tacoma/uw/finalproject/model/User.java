@@ -1,5 +1,7 @@
 package edu.tacoma.uw.finalproject.model;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,9 +91,15 @@ public class User implements Serializable{
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                User user = new User(obj.getString(User.FIRST_NAME), obj.getString(User.LAST_NAME),
-                        obj.getString(User.USER_NAME), obj.getString(User.PASS_WORD), obj.getString(User.EMAIL),
-                        obj.getString(User.PHONE));
+                Log.i(obj.getString(User.FIRST_NAME),  obj.getString(User.FIRST_NAME));
+                User user = new User(
+                        obj.getString(User.FIRST_NAME),
+                        obj.getString(User.LAST_NAME),
+                        obj.getString(User.USER_NAME),
+                        obj.getString(User.PASS_WORD),
+                        obj.getString(User.EMAIL),
+                        obj.getString(User.PHONE)
+                );
                 userInfo.add(user);
             }
 

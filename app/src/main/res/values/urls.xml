@@ -2,4 +2,5 @@
 <resources>
 
     <string name="register_user">https://pathdeck-backend.herokuapp.com/register</string>
+    <string name="login_user">https://pathdeck-backend.herokuapp.com/login</string>
 </resources>

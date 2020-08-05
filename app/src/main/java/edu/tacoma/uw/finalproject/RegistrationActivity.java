@@ -54,7 +54,7 @@ public class RegistrationActivity extends AppCompatActivity
             mUserJSON.put(User.PHONE, user.getPhone());
             new AddUserAsyncTask().execute(url.toString());
         } catch (JSONException e) {
-                Toast.makeText(this, "Error with JSON creation on adding a course" + e.getMessage(),
+                Toast.makeText(this, "Error with JSON creation on adding a user" + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
         }
     }

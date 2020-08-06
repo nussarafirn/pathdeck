@@ -20,12 +20,26 @@ import java.net.URL;
 
 import edu.tacoma.uw.finalproject.model.User;
 
+/**
+ * This class will sign up a user base on the given information
+ */
 public class RegistrationActivity extends AppCompatActivity
             implements SignUpFragment.AddListener {
 
-    public static final String SIGN_UP = "SIGN_UP";
+    /**
+     * The JSON object to get all the regiser
+     */
     private JSONObject mUserJSON;
 
+    /**
+     * The string sign up
+     */
+    public static final String SIGN_UP = "SIGN_UP";
+
+    /**
+     * Launches sign up fragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +51,10 @@ public class RegistrationActivity extends AppCompatActivity
         .commit();
     }
 
-
-
+    /**
+     * Created JSON object that preparing data for registration p
+     * @param user the user to  register
+     */
     @Override
     public void signUp(User user) {
         StringBuilder url = new StringBuilder(getString(R.string.register_user));
@@ -59,6 +75,9 @@ public class RegistrationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * This AsyncTask will sign up the user by connecting to the database
+     */
     private class AddUserAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

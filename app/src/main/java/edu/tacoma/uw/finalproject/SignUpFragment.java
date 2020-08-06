@@ -13,12 +13,14 @@ import android.widget.EditText;
 import edu.tacoma.uw.finalproject.model.User;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignUpFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * This class represents the sign up fragment that register a user based on
+ * information that they fill
  */
 public class SignUpFragment extends Fragment {
 
+    /**
+     * The Listener for sign up activity
+     */
     private AddListener mSignUpListener;
 
     public interface AddListener {
@@ -29,12 +31,24 @@ public class SignUpFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Instantiate the sign up listener
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSignUpListener = (AddListener) getActivity();
     }
 
+    /**
+     * Register a user base on the user's input
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

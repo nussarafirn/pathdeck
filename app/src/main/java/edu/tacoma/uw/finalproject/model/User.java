@@ -10,12 +10,39 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents the user class
+ */
 public class User implements Serializable{
+
+    /**
+     * The firstname of the user
+     */
     private String firstName;
+
+    /**
+     * The lastname of the user
+     */
     private String lastName;
+
+    /**
+     * The username of the user
+     */
     private String userName;
+
+    /**
+     * The password of the user
+     */
     private String password;
+
+    /**
+     * The email of the user
+     */
     private String email;
+
+    /**
+     * The phone number of the user
+     */
     private String phone;
 
     public static final String FIRST_NAME = "first";
@@ -25,6 +52,16 @@ public class User implements Serializable{
     public static final String EMAIL = "email";
     public static final String PHONE = "phone";
 
+    /**
+     * Constructs the user class with the given information
+     *
+     * @param firstName the given firstname of the user
+     * @param lastName the given lastname of the user
+     * @param userName the given username of the user
+     * @param password the given password of the user
+     * @param email the given email of the user
+     * @param phone the given phone number of the user
+     */
     public User(String firstName, String lastName, String userName,
                 String password, String email, String phone) {
         this.firstName = firstName;
@@ -83,6 +120,13 @@ public class User implements Serializable{
         this.phone = phone;
     }
 
+    /**
+     * Parse JSON object on informatiin of the user
+     *
+     * @param userJson user information in JSON format
+     * @return flatten list of user information
+     * @throws JSONException
+     */
     public static List<User> parseUserJson(String userJson) throws JSONException {
         List<User> userInfo = new ArrayList<>();
         if (userJson != null) {

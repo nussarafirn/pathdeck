@@ -28,7 +28,7 @@ public class NoteDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The dummy content this fragment is presenting.
+     * The Note content this fragment is presenting.
      */
     private Note mNote;
 
@@ -44,9 +44,8 @@ public class NoteDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
+            // Load the Note content specified by the fragment
+            // arguments.
             mNote = NoteContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
@@ -62,7 +61,7 @@ public class NoteDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.note_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
+        // Show the Note content as text in a TextView.
         if (mNote != null) {
             ((TextView) rootView.findViewById(R.id.item_detail)).setText(mNote.getNoteId());
         }

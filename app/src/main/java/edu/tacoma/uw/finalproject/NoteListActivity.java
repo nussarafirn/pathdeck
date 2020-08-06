@@ -45,11 +45,22 @@ public class NoteListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+
+    /**
+     * The list contain all the element of the notes class, the element of an item
+     * in the table
+     */
     private List<Note> mNoteList;
+
+    /**
+     * display of a collection of notes
+     */
     private RecyclerView mRecyclerView;
 
-
-
+    /**
+     * Call and start to run the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +90,10 @@ public class NoteListActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.item_list);
         assert mRecyclerView != null;
     }
+
+    /**
+     * Pass in the backend Notes URL contains the list of notes to make JSON file
+     */
     @Override
     protected void onResume(){
         super.onResume();
@@ -159,8 +174,15 @@ public class NoteListActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * setup asynchronous setting and make the notes file to the JSON file
+     */
     private class CoursesTask extends AsyncTask<String, Void, String> {
-
+        /**
+         * Process and run the backend urls
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -190,6 +212,10 @@ public class NoteListActivity extends AppCompatActivity {
             return response;
         }
 
+        /**
+         * read the file to the JSON file
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to")) {

@@ -1,4 +1,9 @@
 package edu.tacoma.uw.finalproject.model;
+/**
+ * Provide the string fields to get the data from notes
+ * @author Kieu Trinh
+ * @version summer 2020
+ */
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,21 +13,66 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Note implements Serializable {
-    private String mNoteId;
-    private String mNoteWho;
-    private String mNotePhone;
-    private String mNoteEmail;
-    private String mNoteDate;
-    private String mNoteLocation;
 
+public class Note implements Serializable {
+    /**
+     * present the id field in note table
+     */
+    private String mNoteId;
+    /**
+     * present the person's name field in note table
+     */
+    private String mNoteWho;
+    /**
+     * present the phone field in note table
+     */
+    private String mNotePhone;
+    /**
+     * present the  email in note table
+     */
+    private String mNoteEmail;
+    /**
+     * present the date field in note table
+     */
+    private String mNoteDate;
+    /**
+     * present the loaction field in note table
+     */
+    private String mNoteLocation;
+    /**
+     * the id field in note table
+     */
     public static final String ID = "notesid";
+    /**
+     * the person's name field in note table
+     */
     public static final String Note_Who = "iwaswith";
+    /**
+     * the phone field in note table
+     */
     public static final String Note_Phone = "phone";
+    /**
+     * the  email in note table
+     */
     public static final String Note_Email = "email";
+    /**
+     * the date field in note table
+     */
     public static final String Note_Date = "date";
+    /**
+     * the location field in note table
+     */
     public static final String Note_Location = "location";
 
+    /**
+     * constructor to initialize all the fields
+     * @param mNoteId
+     * @param mNoteWho
+     * @param mNotePhone
+     * @param mNoteEmail
+     * @param mNoteDate
+     * @param mNoteLocation
+     */
     public Note(String mNoteId, String mNoteWho, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation) {
         this.mNoteId = mNoteId;
         this.mNoteWho = mNoteWho;
@@ -32,8 +82,15 @@ public class Note implements Serializable {
         this.mNoteLocation = mNoteLocation;
     }
 
+    /**
+     * make the file to JSONArray and take the JSON element, store the information the note classreturn list
+     * of all members in notes table
+     * @param courseJson
+     * @return
+     * @throws JSONException
+     */
     public static List<Note> parseNoteJson(String courseJson) throws JSONException {
-        List<Note> courseList = new ArrayList<>();
+        List<Note> noteList = new ArrayList<>();
 
         if (courseJson != null) {
 
@@ -41,61 +98,104 @@ public class Note implements Serializable {
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
+                //using note fields to get JSON strong object
                 Note course = new Note(obj.getString(Note.ID), obj.getString(Note.Note_Who), obj.getString(Note.Note_Phone),
                         obj.getString(Note.Note_Email), obj.getString(Note.Note_Date), obj.getString(Note.Note_Location));
-                courseList.add(course);
+                noteList.add(course);
             }
         }
 
-        return courseList;
+        return noteList;
     }
 
 
-
+    /**
+     * return the Id of the note member
+     * @return mNoteId
+     */
     public String getNoteId() {
         return mNoteId;
     }
-
+    /**
+     * return the iwaswith of the note member
+     * @return mNoteWHo
+     */
     public String getNoteWho() {
         return mNoteWho;
     }
-
+    /**
+     * return the phone data of the note member
+     * @return mNotePhone
+     */
     public String getNotePhone() {
         return mNotePhone;
     }
-
+    /**
+     * return the email of the note member
+     * @return mNoteEmail
+     */
     public String getNoteEmail() {
         return mNoteEmail;
     }
-
+    /**
+     * return the date data of the note member
+     * @return mNoteDate
+     */
     public String getNoteDate() {
         return mNoteDate;
     }
-
+    /**
+     * get the loaction of the note member
+     * @return mNoteLocation
+     */
     public String getNoteLocation() {
         return mNoteLocation;
     }
 
+    /**
+     * set the ID field in the note table
+     * @param mNoteId
+     */
     public void setNoteId(String mNoteId) {
         this.mNoteId = mNoteId;
     }
 
+    /**
+     * set the iwaswith field in the note table
+     * @param mNoteWho
+     */
     public void setNoteWho(String mNoteWho) {
         this.mNoteWho = mNoteWho;
     }
 
+    /**
+     * set the phone filed in the note table
+     * @param mNotePhone
+     */
     public void setNotePhone(String mNotePhone) {
         this.mNotePhone = mNotePhone;
     }
 
+    /**
+     * set the email field in the note table
+     * @param mNoteEmail
+     */
     public void setNoteEmail(String mNoteEmail) {
         this.mNoteEmail = mNoteEmail;
     }
 
+    /**
+     * set the date field in the note table
+     * @param mNoteDate
+     */
     public void setNoteDate(String mNoteDate) {
         this.mNoteDate = mNoteDate;
     }
 
+    /**
+     * set the location field in the note table
+     * @param mNoteLocation
+     */
     public void setNoteLocation(String mNoteLocation) {
         this.mNoteLocation = mNoteLocation;
     }

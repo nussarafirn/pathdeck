@@ -1,4 +1,9 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * This MainMenu will lunch after the user login successfully
+ * @author Kieu Trinh
+ * @version summer 2020
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +20,14 @@ import android.widget.PopupMenu;
 
 import edu.tacoma.uw.finalproject.authenticate.*;
 
-/**
- * This MainMenu will lunch after the user login successfully
- */
 public class MainMenuActivity extends AppCompatActivity {
-
+    //THe button for note popup choices
     public Button addNotes;
 
+    /**
+     * call and start the review note
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +56,14 @@ public class MainMenuActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
+    /**
+     * call the notedetail class to show up the list of the notes
+     */
     public void openNote(){
-        Intent intent = new Intent(this, NoteListActivity.class);
+        Intent intent = new Intent(this, NoteDetailActivity.class);
         startActivity(intent);
 
     }

@@ -14,6 +14,8 @@
 <!--        <activity android:name=".SignUpDetialActivity"></activity>-->
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".NoteListActivity"></activity>
+        <activity android:name=".NoteDetailActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

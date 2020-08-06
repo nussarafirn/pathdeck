@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/covid_note"
+        android:title="Covid Note"/>
+
+    <item android:id="@+id/memo_note"
+        android:title="Memo Note"/>
+</menu>

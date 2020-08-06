@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
-import edu.tacoma.uw.finalproject.authenticate.*;
-
 /**
  * This MainMenu will lunch after the user login successfully
  */

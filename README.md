@@ -16,4 +16,5 @@
 ### Low Priority
 - As a user, I want to be able to choose which notes I want to use so that I can separate my memo notes and covid. 
 
-
+### Errors
+We got the dependencies error when trying to push the the notes table onto the database. It throws an error on needing the '@protobufjs/utf8@1.1.0' to be installed, but we have checked under nodes_modules directory, and it seems like we already have it there. So we were not sure what went wrong. That being said, the first high priority of showing the covid notes could not be showed and will throw NullPointerException because we could not add a new note to show on the Covid note (after click Add Notes > Covid Note). The note is currently empty for this testing user, therefore, it then throws NullPointerException when retreiving an empty NoteID. We did not have enough time figure it out, but this will be carried to the next sprint.  

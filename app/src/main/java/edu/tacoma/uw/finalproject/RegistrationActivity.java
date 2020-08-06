@@ -114,6 +114,7 @@ public class RegistrationActivity extends AppCompatActivity
             if (jsonObject.getBoolean("success")) {
                 Toast.makeText(getApplicationContext(), "RegistrationActivity successful"
                         , Toast.LENGTH_SHORT).show();
+                finish();
             }
             else {
                 Toast.makeText(getApplicationContext(), "User couldn't be added: "

@@ -20,6 +20,7 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
     }
 
     @Override
@@ -32,11 +33,12 @@ public class MainMenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
             SharedPreferences sharedPreferences =
-                    getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
-            sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN), false)
+                    getSharedPreferences(MainActivity.SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
+            sharedPreferences.edit()
+                    .clear()
                     .commit();
 
-            Intent i = new Intent(this, SignInActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
             finish();
         }

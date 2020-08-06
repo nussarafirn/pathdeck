@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.tacoma.uw.finalproject.R;
@@ -21,10 +22,11 @@ import edu.tacoma.uw.finalproject.model.User;
  */
 public class LoginFragment extends Fragment {
 
-    public LoginFragmentListener mLoginFragmentListener;
+//    public LoginFragmentListener mLoginFragmentListener;
 
     public interface LoginFragmentListener {
         void login(String email, String pwd, boolean shouldRemember);
+        void launchRegisterFragment();
     }
     public LoginFragment() {
         // Required empty public constructor
@@ -40,7 +42,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+//         Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
         getActivity().setTitle("Sign In");
 
@@ -49,8 +51,17 @@ public class LoginFragment extends Fragment {
         final EditText pwdText = view.findViewById(R.id.login_password);
         final CheckBox rememberCheckBox = view.findViewById(R.id.remember);
         Button loginButton = view.findViewById(R.id.loginButton);
+        TextView registerTextView = view.findViewById(R.id.signup_textview);
 
         Log.i("login", "here2"); // TODO
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LoginFragmentListener) getActivity()).launchRegisterFragment();
+            }
+        });
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +97,4 @@ public class LoginFragment extends Fragment {
         });
         return view;
     }
-
-
 }

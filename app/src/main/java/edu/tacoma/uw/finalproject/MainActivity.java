@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
         // if there is username saved
         if (mSharedPreferences.getString(USERNAME, null) != null) {
             Intent i = new Intent(getApplicationContext(),
-                    MainMenuActivity.class);
+                    NoteMainActivity.class);
             startActivity(i);
             finish();
         } else {

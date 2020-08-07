@@ -28,7 +28,7 @@ public class NoteDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The Note content this fragment is presenting.
+     * The dummy content this fragment is presenting.
      */
     private Note mNote;
 
@@ -44,14 +44,15 @@ public class NoteDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the Note content specified by the fragment
-            // arguments.
-            mNote = NoteContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            // Load the dummy content specified by the fragment
+            // arguments. In a real-world scenario, use a Loader
+            // to load content from a content provider.
+            mNote = (Note) getArguments().getSerializable(ARG_ITEM_ID);
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mNote.getNoteId());
+            if (appBarLayout != null){
+                appBarLayout.setTitle(mNote.getNoteEmail());
             }
         }
     }
@@ -61,9 +62,14 @@ public class NoteDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.note_detail, container, false);
 
-        // Show the Note content as text in a TextView.
+        // Show the dummy content as text in a TextView.
         if (mNote != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mNote.getNoteId());
+            //((TextView) rootView.findViewById(R.id.item_detail)).setText(mNote.getNoteId());
+            ((TextView) rootView.findViewById(R.id.item_who)).setText(mNote.getNoteWho());
+            ((TextView) rootView.findViewById(R.id.item_phone)).setText(mNote.getNotePhone());
+            ((TextView) rootView.findViewById(R.id.item_email)).setText(mNote.getNoteEmail());
+            ((TextView) rootView.findViewById(R.id.item_date)).setText(mNote.getNoteDate());
+            ((TextView) rootView.findViewById(R.id.item_location)).setText(mNote.getNoteLocation());
         }
 
         return rootView;

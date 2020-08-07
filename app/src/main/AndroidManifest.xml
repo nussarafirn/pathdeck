@@ -13,15 +13,37 @@
         android:theme="@style/AppTheme">
 <!--        <activity android:name=".SignUpDetialActivity"></activity>-->
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".MainMenuActivity"></activity>
-        <activity android:name=".NoteListActivity"></activity>
-        <activity android:name=".NoteDetailActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainMenuActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.tacoma.uw.finalproject.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NoteListActivity"
+            android:parentActivityName=".NoteListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.tacoma.uw.finalproject.MainMenuActivity" />
+        </activity>
+
+        <activity
+            android:name=".NoteDetailActivity"
+            android:parentActivityName=".NoteListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.tacoma.uw.finalproject.MainMenuActivity" />
         </activity>
 
     </application>

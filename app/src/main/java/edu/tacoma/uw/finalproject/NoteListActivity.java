@@ -45,22 +45,11 @@ public class NoteListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-
-    /**
-     * The list contain all the element of the notes class, the element of an item
-     * in the table
-     */
     private List<Note> mNoteList;
-
-    /**
-     * display of a collection of notes
-     */
     private RecyclerView mRecyclerView;
 
-    /**
-     * Call and start to run the activity
-     * @param savedInstanceState
-     */
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +79,6 @@ public class NoteListActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.item_list);
         assert mRecyclerView != null;
     }
-
-    /**
-     * Pass in the backend Notes URL contains the list of notes to make JSON file
-     */
     @Override
     protected void onResume(){
         super.onResume();
@@ -117,7 +102,7 @@ public class NoteListActivity extends AppCompatActivity {
                 Note item = (Note) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(NoteDetailFragment.ARG_ITEM_ID, item.getNoteId());
+                    arguments.putSerializable(NoteDetailFragment.ARG_ITEM_ID, item);
                     NoteDetailFragment fragment = new NoteDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -126,7 +111,7 @@ public class NoteListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, NoteDetailActivity.class);
-                    intent.putExtra(NoteDetailFragment.ARG_ITEM_ID, item.getNoteId());
+                    intent.putExtra(NoteDetailFragment.ARG_ITEM_ID, item);
 
                     context.startActivity(intent);
                 }
@@ -174,15 +159,8 @@ public class NoteListActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * setup asynchronous setting and make the notes file to the JSON file
-     */
     private class CoursesTask extends AsyncTask<String, Void, String> {
-        /**
-         * Process and run the backend urls
-         * @param urls
-         * @return
-         */
+
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -212,10 +190,6 @@ public class NoteListActivity extends AppCompatActivity {
             return response;
         }
 
-        /**
-         * read the file to the JSON file
-         * @param s
-         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to")) {
@@ -240,12 +214,6 @@ public class NoteListActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-
 
 
 }

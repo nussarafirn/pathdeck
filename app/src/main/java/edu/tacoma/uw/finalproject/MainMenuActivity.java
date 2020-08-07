@@ -63,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity {
      * call the notedetail class to show up the list of the notes
      */
     public void openNote(){
-        Intent intent = new Intent(this, NoteDetailActivity.class);
+        Intent intent = new Intent(this, NoteListActivity.class);
         startActivity(intent);
 
     }

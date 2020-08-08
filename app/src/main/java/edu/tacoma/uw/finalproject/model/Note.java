@@ -12,8 +12,6 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class Note implements Serializable {
     /**
      * present the id field in note table
@@ -23,6 +21,8 @@ public class Note implements Serializable {
      * present the person's name field in note table
      */
     private String mNoteWho;
+
+    private String mUsername;
     /**
      * present the phone field in note table
      */
@@ -43,6 +43,8 @@ public class Note implements Serializable {
      * the id field in note table
      */
     public static final String ID = "notesid";
+
+    public static final String Note_username = "username";
     /**
      * the person's name field in note table
      */
@@ -73,9 +75,10 @@ public class Note implements Serializable {
      * @param mNoteDate
      * @param mNoteLocation
      */
-    public Note(String mNoteId, String mNoteWho, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation) {
+    public Note(String mNoteId, String mNoteWho, String username, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation) {
         this.mNoteId = mNoteId;
         this.mNoteWho = mNoteWho;
+        this.mUsername = username;
         this.mNotePhone = mNotePhone;
         this.mNoteEmail = mNoteEmail;
         this.mNoteDate = mNoteDate;
@@ -99,7 +102,7 @@ public class Note implements Serializable {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 //using note fields to get JSON strong object
-                Note course = new Note(obj.getString(Note.ID), obj.getString(Note.Note_Who), obj.getString(Note.Note_Phone),
+                Note course = new Note(obj.getString(Note.ID), obj.getString(Note.Note_Who),obj.getString(Note.Note_username),obj.getString(Note.Note_Phone),
                         obj.getString(Note.Note_Email), obj.getString(Note.Note_Date), obj.getString(Note.Note_Location));
                 noteList.add(course);
             }
@@ -122,6 +125,10 @@ public class Note implements Serializable {
      */
     public String getNoteWho() {
         return mNoteWho;
+    }
+
+    public String getUsername() {
+        return mUsername;
     }
     /**
      * return the phone data of the note member
@@ -168,6 +175,7 @@ public class Note implements Serializable {
         this.mNoteWho = mNoteWho;
     }
 
+
     /**
      * set the phone filed in the note table
      * @param mNotePhone
@@ -200,3 +208,5 @@ public class Note implements Serializable {
         this.mNoteLocation = mNoteLocation;
     }
 }
+
+

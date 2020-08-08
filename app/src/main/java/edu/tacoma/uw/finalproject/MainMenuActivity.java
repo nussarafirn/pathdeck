@@ -17,12 +17,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import edu.tacoma.uw.finalproject.authenticate.*;
+import edu.tacoma.uw.finalproject.model.User;
 
 public class MainMenuActivity extends AppCompatActivity {
     //THe button for note popup choices
     public Button addNotes;
+    //private SharedPreferences mSharedPreferences;
+
 
     /**
      * call and start the review note
@@ -32,6 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        //mSharedPreferences = getSharedPreferences("edu.tacoma.uw.finalproject.sign_in_file_prefs", Context.MODE_PRIVATE);
 
         addNotes = findViewById(R.id.button);
         addNotes.setOnClickListener(new View.OnClickListener(){
@@ -46,6 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()){
                             case R.id.covid_note:
                                 openNote();
+                                //Toast.makeText(MainMenuActivity.this,"Hello"+ mSharedPreferences.getString("username",null), Toast.LENGTH_SHORT).show();
                                 return true;
                         }
 

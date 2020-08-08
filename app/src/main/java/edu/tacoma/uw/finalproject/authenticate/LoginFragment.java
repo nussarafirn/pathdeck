@@ -21,6 +21,7 @@ import edu.tacoma.uw.finalproject.R;
 public class LoginFragment extends Fragment {
 
 
+
     public interface LoginFragmentListener {
         void login(String email, String pwd, boolean shouldRemember);
         void launchRegisterFragment();

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class NoteContent {
 
     /**
@@ -37,7 +36,7 @@ public class NoteContent {
     }
 
     private static Note createNoteItem(int position) {
-        return new Note("Id" + position, "who" + position, "Phone" + position,
+        return new Note("Id" + position, "who" + position,"username" + position ,"Phone" + position,
                 "Email" + position, "Date" + position, "Location" + position);
     }
 

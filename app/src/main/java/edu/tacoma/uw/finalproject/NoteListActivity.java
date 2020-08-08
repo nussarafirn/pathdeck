@@ -2,6 +2,7 @@ package edu.tacoma.uw.finalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -49,7 +50,6 @@ public class NoteListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,12 +90,15 @@ public class NoteListActivity extends AppCompatActivity {
                 (this, mNoteList, mTwoPane));
     }
 
-    public static class SimpleItemRecyclerViewAdapter
+    public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final NoteListActivity mParentActivity;
         private final List<Note> mValues;
         private final boolean mTwoPane;
+        private SharedPreferences mSharedPreferences;
+        public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
+
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,8 +138,14 @@ public class NoteListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).getNoteId());
-            holder.mContentView.setText(mValues.get(position).getNoteWho());
+            mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
+            String username = mSharedPreferences.getString("username",null);
+            if(mValues.get(position).getUsername().equalsIgnoreCase(username)){
+                holder.mIdView.setText(mValues.get(position).getNoteId());
+                holder.mContentView.setText(mValues.get(position).getNoteWho());
+            }
+            //holder.mIdView.setText(mValues.get(position).getNoteId());
+            //holder.mContentView.setText(mValues.get(position).getNoteWho());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);

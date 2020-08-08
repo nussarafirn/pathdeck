@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
     /**
      * The username on the account
      */
-    private String mUsername;
+    public String mUsername;
 
     /**
      * Tells whether the user wants to remember the login information.

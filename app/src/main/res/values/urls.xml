@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="get_Notes">https://pathdeck-backend.herokuapp.com/notes</string>
+    <string name="add_Notes">https://pathdeck-backend.herokuapp.com/addnotes</string>
     <string name="register_user">https://pathdeck-backend.herokuapp.com/register</string>
     <string name="login_user">https://pathdeck-backend.herokuapp.com/login</string>
 </resources>

@@ -21,6 +21,8 @@ import edu.tacoma.uw.finalproject.model.NoteContent;
  * on handsets.
  */
 public class NoteDetailFragment extends Fragment {
+
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.

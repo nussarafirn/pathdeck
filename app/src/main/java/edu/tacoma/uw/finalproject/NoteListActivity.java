@@ -50,6 +50,7 @@ public class NoteListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +64,9 @@ public class NoteListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                 //       .setAction("Action", null).show();
+                launchNoteAddFragment();
             }
         });
 
@@ -78,6 +80,20 @@ public class NoteListActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.item_list);
         assert mRecyclerView != null;
+        //setupRecyclerView((RecyclerView) mRecyclerView);
+    }
+    private void launchNoteAddFragment() {
+        NoteAddFragment noteAddFragment = new NoteAddFragment();
+
+        if (mTwoPane) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.item_detail_container, noteAddFragment)
+                    .commit();
+        } else {
+            Intent intent = new Intent(NoteListActivity.this, NoteDetailActivity.class);
+            intent.putExtra(NoteDetailActivity.ADD_NOTE, true);
+            startActivity(intent);
+        }
     }
     @Override
     protected void onResume(){
@@ -96,8 +112,9 @@ public class NoteListActivity extends AppCompatActivity {
         private final NoteListActivity mParentActivity;
         private final List<Note> mValues;
         private final boolean mTwoPane;
-        private SharedPreferences mSharedPreferences;
+        public SharedPreferences mSharedPreferences;
         public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
+
 
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
@@ -155,6 +172,9 @@ public class NoteListActivity extends AppCompatActivity {
         public int getItemCount() {
             return mValues.size();
         }
+
+
+
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;

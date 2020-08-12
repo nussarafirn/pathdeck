@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/dashboard"
+        android:id="@+id/nav_cal"
         android:icon="@drawable/ic_outline_event_note_24"
-        android:title="dashboard"/>
+        android:title="Calendar"/>
     <item
-        android:id="@+id/search"
+        android:id="@+id/nav_search"
         android:icon="@drawable/ic_outline_search_24"
-        android:title="search"/>
+        android:title="Search"/>
     <item
-        android:id="@+id/Notification"
+        android:id="@+id/nav_noti"
         android:icon="@drawable/ic_outline_notifications_active_24"
         android:title="Notification"/>
     <item
-        android:id="@+id/health"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="health"/>
+        android:id="@+id/nav_health"
+        android:icon="@drawable/ic_outline_health"
+        android:title="Health"/>
     <item
-        android:id="@+id/account"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/ic_outline_account_circle_24"
-        android:title="account"/>
+        android:title="Profile"/>
 </menu>

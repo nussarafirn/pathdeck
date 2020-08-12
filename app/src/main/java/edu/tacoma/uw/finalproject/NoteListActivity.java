@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,7 +68,7 @@ public class NoteListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                 //       .setAction("Action", null).show();
+                //       .setAction("Action", null).show();
                 launchNoteAddFragment();
             }
         });
@@ -80,7 +83,7 @@ public class NoteListActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.item_list);
         assert mRecyclerView != null;
-        //setupRecyclerView((RecyclerView) mRecyclerView);
+        setupRecyclerView((RecyclerView) mRecyclerView);
     }
     private void launchNoteAddFragment() {
         NoteAddFragment noteAddFragment = new NoteAddFragment();
@@ -90,7 +93,7 @@ public class NoteListActivity extends AppCompatActivity {
                     .replace(R.id.item_detail_container, noteAddFragment)
                     .commit();
         } else {
-            Intent intent = new Intent(NoteListActivity.this, NoteDetailActivity.class);
+            Intent intent = new Intent(this, NoteDetailActivity.class);
             intent.putExtra(NoteDetailActivity.ADD_NOTE, true);
             startActivity(intent);
         }
@@ -98,12 +101,16 @@ public class NoteListActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        new CoursesTask().execute(getString(R.string.get_Notes));
+        new NotesTask().execute(getString(R.string.get_Notes));
+        setupRecyclerView(mRecyclerView);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter
-                (this, mNoteList, mTwoPane));
+        if(mNoteList != null){
+            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter
+                    (this, mNoteList, mTwoPane));
+        }
+
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -188,7 +195,7 @@ public class NoteListActivity extends AppCompatActivity {
         }
     }
 
-    private class CoursesTask extends AsyncTask<String, Void, String> {
+    private class NotesTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {

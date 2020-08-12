@@ -121,18 +121,21 @@ public class NoteDetailActivity extends AppCompatActivity implements NoteAddFrag
         StringBuilder url = new StringBuilder(getString(R.string.add_Notes));
         mNoteJSON = new JSONObject();
         try{
+            //Toast.makeText(this, "creation test on adding note" + note.getUsername(), Toast.LENGTH_SHORT).show();
             mNoteJSON.put(Note.Note_Who, note.getNoteWho());
-            mNoteJSON.put(Note.Note_username, note.getUsername());
+            mNoteJSON.put("Username", note.getUsername());
             mNoteJSON.put(Note.Note_Phone, note.getNotePhone());
             mNoteJSON.put(Note.Note_Email, note.getNoteEmail());
             mNoteJSON.put(Note.Note_Date, note.getNoteDate());
             mNoteJSON.put(Note.Note_Location, note.getNoteLocation());
-        }catch(JSONException e){
-            Toast.makeText(this, "Error with JSON creation on adding note: "
-                    + e.getMessage(), Toast.LENGTH_SHORT).show();
+            new AddNoteAsyncTask().execute(url.toString());
+        } catch(JSONException e){
+        //catch(Exception e){
+            Toast.makeText(this, "Error with JSON creation on adding note " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
         }
     }
-    private class AddCourseAsyncTask extends AsyncTask<String, Void, String> {
+    private class AddNoteAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             String response = "";

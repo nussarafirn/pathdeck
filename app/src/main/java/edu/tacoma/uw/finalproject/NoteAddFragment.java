@@ -92,10 +92,10 @@ public class NoteAddFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String noteID = "";
                 String noteWho = noteWhoEditText.getText().toString();
-                //String Username = "trinhk";
+                //String username = "user";
                 String username = mSharedPreferences.getString("username",null);
                 String notePhone = notePhoneEditText.getText().toString();
                 String noteEmail = noteEmailEditText.getText().toString();

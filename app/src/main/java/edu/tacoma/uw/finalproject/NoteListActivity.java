@@ -30,7 +30,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import edu.tacoma.uw.finalproject.model.Note;
 
@@ -164,13 +168,12 @@ public class NoteListActivity extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, int position) {
             mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
             String username = mSharedPreferences.getString("username",null);
-            if(mValues.get(position).getUsername().equalsIgnoreCase(username)){
+            //TODO: add the date method
+            if(mValues.get(position).getUsername().equalsIgnoreCase(username)
+                    && differentDays(mValues.get(position).getNoteDate())){
                 holder.mIdView.setText(mValues.get(position).getNoteId());
                 holder.mContentView.setText(mValues.get(position).getNoteWho());
             }
-            //holder.mIdView.setText(mValues.get(position).getNoteId());
-            //holder.mContentView.setText(mValues.get(position).getNoteWho());
-
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }
@@ -180,7 +183,23 @@ public class NoteListActivity extends AppCompatActivity {
             return mValues.size();
         }
 
+        private boolean differentDays(String start) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
+            try{
+                Date from = sdf.parse(start);
+                Date current = new Date();
+                long diffInMillies = Math.abs(current.getTime() - from.getTime());
+                long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                if (diff < 14){
+                    return true;
+                }
+            }catch (ParseException e){
+
+            }
+
+            return false;
+        }
 
 
         class ViewHolder extends RecyclerView.ViewHolder {

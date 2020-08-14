@@ -15,6 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TODO: Currently a placeholder for Main Menu showing calendar
@@ -68,9 +77,17 @@ public class CalendarFragment extends Fragment {
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
+
                         switch (menuItem.getItemId()){
                             case R.id.covid_note:
-                                openNote();         //Toast.makeText(MainMenuActivity.this,"Hello"+ mSharedPreferences.getString("username",null), Toast.LENGTH_SHORT).show();
+                                /*SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                                try {
+                                    Toast.makeText(getActivity(), "date: " + sdf.parse("8.12.2020"), Toast.LENGTH_SHORT).show();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }*/
+
+                                openNote();
                                 return true;
                         }
 

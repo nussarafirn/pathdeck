@@ -25,7 +25,7 @@
     <string name="enter_who_hint">Enter person name</string>
     <string name="enter_phone_hint">Enter phone number</string>
     <string name="enter_email_hint">Enter email address</string>
-    <string name="enter_date_hint">Enter date</string>
+    <string name="enter_date_hint">Enter date in format mm/dd/yyyy</string>
     <string name="enter_location_hint">Enter location</string>
 
     <string name="btn_add_note">Add Note</string>

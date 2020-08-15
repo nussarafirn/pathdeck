@@ -80,13 +80,6 @@ public class CalendarFragment extends Fragment {
 
                         switch (menuItem.getItemId()){
                             case R.id.covid_note:
-                                /*SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                                try {
-                                    Toast.makeText(getActivity(), "date: " + sdf.parse("8.12.2020"), Toast.LENGTH_SHORT).show();
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }*/
-
                                 openNote();
                                 return true;
                         }

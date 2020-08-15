@@ -6,11 +6,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -104,9 +106,17 @@ public class NoteAddFragment extends Fragment {
                 String noteEmail = noteEmailEditText.getText().toString();
                 String noteDate = noteDateEditText.getText().toString();
                 String noteLocation = noteLocationEditText.getText().toString();
-                Note note = new Note(noteID, noteWho, username,notePhone, noteEmail, noteDate, noteLocation);
-                if (mAddListener != null){
-                    mAddListener.addNote(note);
+                if (TextUtils.isEmpty(noteEmail) || !noteEmail.contains("@")){
+                    Toast.makeText(v.getContext(), "Enter valid email address", Toast.LENGTH_SHORT).show();
+                    noteEmailEditText.requestFocus();
+                }else if(TextUtils.isEmpty(notePhone) || notePhone.length() > 10 ){
+                    Toast.makeText(v.getContext(), "Enter valid phone number with 10 digits in format XXXXXXXXXX", Toast.LENGTH_SHORT).show();
+                    noteEmailEditText.requestFocus();
+                }else{
+                    Note note = new Note(noteID, noteWho, username,notePhone, noteEmail, noteDate, noteLocation);
+                    if (mAddListener != null){
+                        mAddListener.addNote(note);
+                    }
                 }
             }
         });

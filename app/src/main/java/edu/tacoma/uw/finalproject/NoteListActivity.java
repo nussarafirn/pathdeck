@@ -123,6 +123,7 @@ public class NoteListActivity extends AppCompatActivity {
         private final NoteListActivity mParentActivity;
         private final List<Note> mValues;
         private final boolean mTwoPane;
+        //public List<String>
         public SharedPreferences mSharedPreferences;
         public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
 
@@ -185,7 +186,6 @@ public class NoteListActivity extends AppCompatActivity {
 
         private boolean differentDays(String start) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-
             try{
                 Date from = sdf.parse(start);
                 Date current = new Date();
@@ -197,7 +197,6 @@ public class NoteListActivity extends AppCompatActivity {
             }catch (ParseException e){
 
             }
-
             return false;
         }
 

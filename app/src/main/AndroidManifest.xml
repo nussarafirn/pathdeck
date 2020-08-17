@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+<!--        TODO: NO ACTION BAR NEEDED-->
+<!--        android:theme="@style/AppTheme.NoActionBar">-->
+
+
 <!--        <activity android:name=".SignUpDetialActivity"></activity>-->
         <activity android:name=".RegistrationActivity" />
 
@@ -45,6 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.tacoma.uw.finalproject.MainMenuActivity" />
         </activity>
+
 
     </application>
 

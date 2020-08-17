@@ -15,6 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TODO: Currently a placeholder for Main Menu showing calendar
@@ -50,30 +59,6 @@ public class CalendarFragment extends Fragment {
 //
 //        //mSharedPreferences = getSharedPreferences("edu.tacoma.uw.finalproject.sign_in_file_prefs", Context.MODE_PRIVATE);
 //
-//        addNotes = findViewById(R.id.button);
-//        addNotes.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                PopupMenu popup = new PopupMenu(MainMenuActivity.this, addNotes);
-//                popup.getMenuInflater().inflate(R.menu.covidnotemenu, popup.getMenu());
-//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem menuItem) {
-//                        switch (menuItem.getItemId()){
-//                            case R.id.covid_note:
-//                                openNote();
-//                                //Toast.makeText(MainMenuActivity.this,"Hello"+ mSharedPreferences.getString("username",null), Toast.LENGTH_SHORT).show();
-//                                return true;
-//                        }
-//
-//                        return false;
-//                    }
-//                });
-//                popup.show();
-//            }
-//
-//        });
 //
 //    }
 
@@ -81,6 +66,38 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        addNotes = view.findViewById(R.id.button);
+        addNotes.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getActivity(), addNotes);
+                popup.getMenuInflater().inflate(R.menu.covidnotemenu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        switch (menuItem.getItemId()){
+                            case R.id.covid_note:
+                                openNote();
+                                return true;
+                        }
+
+                        return false;
+                    }
+                });
+                popup.show();
+            }
+
+        });
+
+    return view;
+    }
+
+    public void openNote(){
+        Intent intent = new Intent(getActivity(), NoteListActivity.class);
+        startActivity(intent);
+
     }
 }

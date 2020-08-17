@@ -6,11 +6,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.tacoma.uw.finalproject.model.Note;
 
@@ -87,6 +92,7 @@ public class NoteAddFragment extends Fragment {
         final EditText notePhoneEditText = v.findViewById(R.id.note_phone);
         final EditText noteEmailEditText = v.findViewById(R.id.note_email);
         final EditText noteDateEditText = v.findViewById(R.id.note_date);
+        noteDateEditText.setText(setCurrentDay(new Date()));
         final EditText noteLocationEditText = v.findViewById(R.id.note_location);
         Button addButton = v.findViewById(R.id.btn_add_note);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -95,18 +101,30 @@ public class NoteAddFragment extends Fragment {
             public void onClick(View v) {
                 String noteID = "";
                 String noteWho = noteWhoEditText.getText().toString();
-                //String username = "user";
                 String username = mSharedPreferences.getString("username",null);
                 String notePhone = notePhoneEditText.getText().toString();
                 String noteEmail = noteEmailEditText.getText().toString();
                 String noteDate = noteDateEditText.getText().toString();
                 String noteLocation = noteLocationEditText.getText().toString();
-                Note note = new Note(noteID, noteWho, username,notePhone, noteEmail, noteDate, noteLocation);
-                if (mAddListener != null){
-                    mAddListener.addNote(note);
+                if (TextUtils.isEmpty(noteEmail) || !noteEmail.contains("@")){
+                    Toast.makeText(v.getContext(), "Enter valid email address", Toast.LENGTH_SHORT).show();
+                    noteEmailEditText.requestFocus();
+                }else if(TextUtils.isEmpty(notePhone) || notePhone.length() > 10 ){
+                    Toast.makeText(v.getContext(), "Enter valid phone number with 10 digits in format XXXXXXXXXX", Toast.LENGTH_SHORT).show();
+                    noteEmailEditText.requestFocus();
+                }else{
+                    Note note = new Note(noteID, noteWho, username,notePhone, noteEmail, noteDate, noteLocation);
+                    if (mAddListener != null){
+                        mAddListener.addNote(note);
+                    }
                 }
             }
         });
         return v;
+    }
+
+    public String setCurrentDay(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        return sdf.format(date);
     }
 }

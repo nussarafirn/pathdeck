@@ -73,58 +73,6 @@ public class MainMenuActivity extends AppCompatActivity {
             };
 
 
-   // TODO: move down here to Calendar Fragment
-//    //The button for note popup choices
-//    public Button addNotes;
-//    //private SharedPreferences mSharedPreferences;
-//
-//
-//    /**
-//     * call and start the review note
-//     * @param savedInstanceState
-//     */
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main_menu);
-//        //mSharedPreferences = getSharedPreferences("edu.tacoma.uw.finalproject.sign_in_file_prefs", Context.MODE_PRIVATE);
-//
-//        addNotes = findViewById(R.id.button);
-//        addNotes.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                PopupMenu popup = new PopupMenu(MainMenuActivity.this, addNotes);
-//                popup.getMenuInflater().inflate(R.menu.covidnotemenu, popup.getMenu());
-//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem menuItem) {
-//                        switch (menuItem.getItemId()){
-//                            case R.id.covid_note:
-//                                openNote();
-//                                //Toast.makeText(MainMenuActivity.this,"Hello"+ mSharedPreferences.getString("username",null), Toast.LENGTH_SHORT).show();
-//                                return true;
-//                        }
-//
-//                        return false;
-//                    }
-//                });
-//                popup.show();
-//            }
-//
-//        });
-//
-//    }
-//
-//    /**
-//     * call the notedetail class to show up the list of the notes
-//     */
-//    public void openNote(){
-//        Intent intent = new Intent(this, NoteListActivity.class);
-//        startActivity(intent);
-//
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);

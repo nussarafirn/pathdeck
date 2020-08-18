@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -32,8 +34,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
 import edu.tacoma.uw.finalproject.model.Note;
@@ -55,14 +61,13 @@ public class NoteListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private List<Note> mNoteList;
     private RecyclerView mRecyclerView;
-
-
+    public static List<String> mEmailList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
-
+        mEmailList = new ArrayList<String>();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -76,6 +81,8 @@ public class NoteListActivity extends AppCompatActivity {
                 launchNoteAddFragment();
             }
         });
+
+
 
         if (findViewById(R.id.item_detail_container) != null) {
             // The detail container view will be present only in the
@@ -117,13 +124,14 @@ public class NoteListActivity extends AppCompatActivity {
 
     }
 
+
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final NoteListActivity mParentActivity;
+
         private final List<Note> mValues;
         private final boolean mTwoPane;
-        //public List<String>
         public SharedPreferences mSharedPreferences;
         public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
 
@@ -147,6 +155,8 @@ public class NoteListActivity extends AppCompatActivity {
 
                     context.startActivity(intent);
                 }
+                //mEmailList.add("Hello");
+                //Toast.makeText(NoteListActivity.this,"Hello" + getEmailList(), Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -156,17 +166,20 @@ public class NoteListActivity extends AppCompatActivity {
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;
+
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_note_content, parent, false);
+            //mEmailList = emailList;
             return new ViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
+
             mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
             String username = mSharedPreferences.getString("username",null);
             //TODO: add the date method
@@ -174,15 +187,19 @@ public class NoteListActivity extends AppCompatActivity {
                     && differentDays(mValues.get(position).getNoteDate())){
                 holder.mIdView.setText(mValues.get(position).getNoteId());
                 holder.mContentView.setText(mValues.get(position).getNoteWho());
+                mEmailList.add(mValues.get(position).getNoteEmail());
             }
+            //mEmailList = emailList;
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }
+
 
         @Override
         public int getItemCount() {
             return mValues.size();
         }
+
 
         private boolean differentDays(String start) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -199,7 +216,6 @@ public class NoteListActivity extends AppCompatActivity {
             }
             return false;
         }
-
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;
@@ -268,6 +284,13 @@ public class NoteListActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    public static String getEmailList(){
+        String emailList = TextUtils.join(", ", mEmailList);
+        return emailList;
+    }
+
 
 
 }

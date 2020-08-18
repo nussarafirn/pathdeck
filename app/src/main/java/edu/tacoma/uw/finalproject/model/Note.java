@@ -76,6 +76,7 @@ public class Note implements Serializable {
      * @param mNoteLocation
      */
     public Note(String mNoteId, String mNoteWho, String username, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation) {
+
         this.mNoteId = mNoteId;
         this.mNoteWho = mNoteWho;
         this.mUsername = username;
@@ -172,7 +173,12 @@ public class Note implements Serializable {
      * @param mNoteWho
      */
     public void setNoteWho(String mNoteWho) {
-        this.mNoteWho = mNoteWho;
+        if(!mNoteWho.isEmpty()){
+            this.mNoteWho = mNoteWho;
+        }else{
+            throw new IllegalArgumentException("enter a name");
+        }
+
     }
 
 
@@ -181,7 +187,12 @@ public class Note implements Serializable {
      * @param mNotePhone
      */
     public void setNotePhone(String mNotePhone) {
-        this.mNotePhone = mNotePhone;
+        if(mNotePhone.isEmpty() && mNotePhone.length() != 10){
+            throw new IllegalArgumentException("Enter 10 digits number");
+        }else {
+            this.mNotePhone = mNotePhone;
+        }
+
     }
 
     /**
@@ -189,7 +200,12 @@ public class Note implements Serializable {
      * @param mNoteEmail
      */
     public void setNoteEmail(String mNoteEmail) {
-        this.mNoteEmail = mNoteEmail;
+        if(mNoteEmail.contains("@") && !mNoteEmail.isEmpty()){
+            this.mNoteEmail = mNoteEmail;
+        }else{
+            throw new IllegalArgumentException("Invalid Email");
+        }
+
     }
 
     /**

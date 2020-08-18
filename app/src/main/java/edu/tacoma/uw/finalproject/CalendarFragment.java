@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,8 +32,6 @@ import java.util.concurrent.TimeUnit;
 public class CalendarFragment extends Fragment {
     //The button for note popup choices
     public Button addNotes;
-
-
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -53,14 +52,6 @@ public class CalendarFragment extends Fragment {
         return fragment;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        //mSharedPreferences = getSharedPreferences("edu.tacoma.uw.finalproject.sign_in_file_prefs", Context.MODE_PRIVATE);
-//
-//
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,10 +59,12 @@ public class CalendarFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         addNotes = view.findViewById(R.id.button);
+
         addNotes.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
+
                 PopupMenu popup = new PopupMenu(getActivity(), addNotes);
                 popup.getMenuInflater().inflate(R.menu.covidnotemenu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -82,8 +75,13 @@ public class CalendarFragment extends Fragment {
                             case R.id.covid_note:
                                 openNote();
                                 return true;
-                        }
+                            case R.id.memo_note:
+                                //Toast.makeText(getActivity(), "list" + call.emailList, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+                                startActivity(intent);
+                                return true;
 
+                        }
                         return false;
                     }
                 });
@@ -91,9 +89,10 @@ public class CalendarFragment extends Fragment {
             }
 
         });
-
     return view;
     }
+
+
 
     public void openNote(){
         Intent intent = new Intent(getActivity(), NoteListActivity.class);

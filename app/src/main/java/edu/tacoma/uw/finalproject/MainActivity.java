@@ -225,6 +225,10 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
                     startActivity(i);
                     finish();
 
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Username or password was incorrect, please register before sign in if you haven't done so."
+                            , Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 Toast.makeText(getApplicationContext(), "JSON Parsing error on registering a new user"

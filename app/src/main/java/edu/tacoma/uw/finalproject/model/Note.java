@@ -76,14 +76,20 @@ public class Note implements Serializable {
      * @param mNoteLocation
      */
     public Note(String mNoteId, String mNoteWho, String username, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation) {
+        if(!mNoteWho.isEmpty() && !mNoteLocation.isEmpty()
+                && mNoteEmail.contains("@")
+                && mNotePhone.length() == 10 && !username.isEmpty()){
+            this.mNoteId = mNoteId;
+            this.mNoteWho = mNoteWho;
+            this.mUsername = username;
+            this.mNotePhone = mNotePhone;
+            this.mNoteEmail = mNoteEmail;
+            this.mNoteDate = mNoteDate;
+            this.mNoteLocation = mNoteLocation;
+        }else{
+            throw new IllegalArgumentException();
+        }
 
-        this.mNoteId = mNoteId;
-        this.mNoteWho = mNoteWho;
-        this.mUsername = username;
-        this.mNotePhone = mNotePhone;
-        this.mNoteEmail = mNoteEmail;
-        this.mNoteDate = mNoteDate;
-        this.mNoteLocation = mNoteLocation;
     }
 
     /**
@@ -176,7 +182,7 @@ public class Note implements Serializable {
         if(!mNoteWho.isEmpty()){
             this.mNoteWho = mNoteWho;
         }else{
-            throw new IllegalArgumentException("enter a name");
+            throw new IllegalArgumentException("name cannot be empty");
         }
 
     }
@@ -188,7 +194,7 @@ public class Note implements Serializable {
      */
     public void setNotePhone(String mNotePhone) {
         if(mNotePhone.isEmpty() && mNotePhone.length() != 10){
-            throw new IllegalArgumentException("Enter 10 digits number");
+            throw new IllegalArgumentException("Enter 10 digits number format XXXXXXXXXX");
         }else {
             this.mNotePhone = mNotePhone;
         }
@@ -221,7 +227,12 @@ public class Note implements Serializable {
      * @param mNoteLocation
      */
     public void setNoteLocation(String mNoteLocation) {
-        this.mNoteLocation = mNoteLocation;
+        if (mNoteLocation.isEmpty()) {
+            throw new IllegalArgumentException("location cannot be empty");
+        } else {
+            this.mNoteLocation = mNoteLocation;
+
+        }
     }
 }
 

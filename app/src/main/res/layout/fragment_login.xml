@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:id="@+id/sign_in_fragment_id"
-    tools:context=".authenticate.SignInActivity">
+    tools:context=".authenticate.LoginFragment">
 
     <ImageView
         android:id="@+id/logo"

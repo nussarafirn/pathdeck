@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CalendarFragment extends Fragment {
     //The button for note popup choices
-    public Button addNotes;
+    private Button addNotes;
     public CalendarFragment() {
         // Required empty public constructor
     }

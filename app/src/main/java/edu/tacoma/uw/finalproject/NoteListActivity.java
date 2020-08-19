@@ -61,13 +61,13 @@ public class NoteListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private List<Note> mNoteList;
     private RecyclerView mRecyclerView;
-    public static List<String> mEmailList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
-        mEmailList = new ArrayList<String>();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -183,11 +183,10 @@ public class NoteListActivity extends AppCompatActivity {
             mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
             String username = mSharedPreferences.getString("username",null);
             //TODO: add the date method
-            if(mValues.get(position).getUsername().equalsIgnoreCase(username)
-                    && differentDays(mValues.get(position).getNoteDate())){
+            if(mValues.get(position).getUsername().equalsIgnoreCase(username)){
                 holder.mIdView.setText(mValues.get(position).getNoteId());
                 holder.mContentView.setText(mValues.get(position).getNoteWho());
-                mEmailList.add(mValues.get(position).getNoteEmail());
+
             }
             //mEmailList = emailList;
             holder.itemView.setTag(mValues.get(position));
@@ -286,10 +285,6 @@ public class NoteListActivity extends AppCompatActivity {
     }
 
 
-    public static String getEmailList(){
-        String emailList = TextUtils.join(", ", mEmailList);
-        return emailList;
-    }
 
 
 

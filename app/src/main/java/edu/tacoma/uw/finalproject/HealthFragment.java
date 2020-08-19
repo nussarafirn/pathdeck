@@ -62,8 +62,8 @@ public class HealthFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -71,8 +71,8 @@ public class HealthFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+//                startActivity(intent);
             }
         });
 

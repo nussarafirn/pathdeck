@@ -1,12 +1,19 @@
 package edu.tacoma.uw.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+
+import edu.tacoma.uw.finalproject.authenticate.LoginFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,15 +21,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HealthFragment extends Fragment {
+    public CardView card_temp;
+    public CardView card_symp;
+    public CardView card_test;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public HealthFragment() {
         // Required empty public constructor
@@ -32,16 +34,11 @@ public class HealthFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HealthFragment.
+     * @return A new instance of fragment SearchFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static HealthFragment newInstance(String param1, String param2) {
+    public static HealthFragment newInstance() {
         HealthFragment fragment = new HealthFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,16 +46,46 @@ public class HealthFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health, container, false);
+        View view = inflater.inflate(R.layout.fragment_health, container, false);
+        card_temp = view.findViewById(R.id.card_temp);
+        card_symp = view.findViewById(R.id.card_symp);
+        card_test = view.findViewById(R.id.card_test);
+
+        card_temp.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        card_symp.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+
+
+        card_test.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 }

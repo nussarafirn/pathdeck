@@ -31,4 +31,9 @@
     <string name="btn_add_note">Add Note</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_health_information">Update Health Information</string>
+    <string name="enter_the_current_body_temperature">Enter the current body temperature (°F)</string>
+    <string name="enter_the_symptoms">Enter the symptoms, if any. Otherwise enter N/A.</string>
+    <string name="enter_testing_result">Enter testing result, if any. Otherwise enter N/A</string>
+    <string name="update">Update</string>
 </resources>

@@ -15,14 +15,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import edu.tacoma.uw.finalproject.authenticate.*;
-import edu.tacoma.uw.finalproject.model.User;
 
 public class MainMenuActivity extends AppCompatActivity {
 

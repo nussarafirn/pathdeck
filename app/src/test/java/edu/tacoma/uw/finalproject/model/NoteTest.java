@@ -1,6 +1,7 @@
 package edu.tacoma.uw.finalproject.model;
 
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertNotNull;
 public class NoteTest {
     Note note = new Note("", "Emily", "user",
             "1234567890", "E@uw.edu", "08/17/2020", "Tacoma");
-    //Note(String mNoteId, String mNoteWho, String username, String mNotePhone, String mNoteEmail, String mNoteDate, String mNoteLocation)
+
     @Test
     public void testNoteConstructor(){
         assertNotNull(new Note("", "Emily", "user",
@@ -50,7 +51,7 @@ public class NoteTest {
 
     @Test
     public void testGetNoteWho() {
-        assertEquals("emily", note.getNoteWho());
+        assertEquals("Emily", note.getNoteWho());
     }
 
     @Test
@@ -72,7 +73,7 @@ public class NoteTest {
 
     @Test
     public void testGetNoteDate() {
-        assertEquals("08/18/2020", note.getNoteDate());
+        assertEquals("08/17/2020", note.getNoteDate());
         assertNotEquals("08/18/2020", note.getNoteDate());
     }
 
@@ -107,7 +108,7 @@ public class NoteTest {
         note.setNoteWho("K@#");
         assertEquals("K@#", note.getNoteWho());
         note.setNoteWho("K124");
-        assertEquals("K123", note.getNoteWho());
+        assertEquals("K124", note.getNoteWho());
     }
 
     @Test
@@ -163,14 +164,9 @@ public class NoteTest {
         assertEquals("08-18-2020", note.getNoteDate());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidSetLocation() {
-        try {
-            note.setNoteLocation("");
-        }catch (IllegalArgumentException e){
-            String message = "location cannot be empty";
-            assertEquals(message, note.getNoteLocation());
-        }
+        this.note.setNoteLocation("");
     }
 
     @Test
@@ -180,8 +176,8 @@ public class NoteTest {
         test.add("11522 SE 253rd");
         test.add("Forever21");
         for(String each : test){
-            note.setNoteEmail(each);
-            assertEquals(each, note.getNoteEmail());
+            note.setNoteLocation(each);
+            assertEquals(each, note.getNoteLocation());
         }
     }
 }

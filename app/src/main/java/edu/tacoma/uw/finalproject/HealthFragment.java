@@ -45,8 +45,7 @@ import edu.tacoma.uw.finalproject.model.Record;
  * create an instance of this fragment.
  */
 public class HealthFragment extends Fragment {
-    private CardView card_temp;
-    private CardView card_symp;
+
     private CardView card_test;
     private List<Record> mRecordList;
     public SharedPreferences mSharedPreferences;
@@ -87,38 +86,14 @@ public class HealthFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_health, container, false);
-        card_temp = view.findViewById(R.id.card_temp);
-        card_symp = view.findViewById(R.id.card_symp);
         card_test = view.findViewById(R.id.card_test);
         temp = view.findViewById(R.id.temp_text);
         symptom = view.findViewById(R.id.symptom_text);
         testResult = view.findViewById(R.id.test_text);
         tempState = view.findViewById(R.id.bodyState_text);
-        /*if(Double.valueOf(temp.getText().toString()) > 99){
-            tempState.setText("Fever");
-        }*/
+
         mSharedPreferences = this.getActivity().getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
         username = mSharedPreferences.getString("username", null);
-        card_temp.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
-//                startActivity(intent);
-                Toast.makeText(getActivity(), "Hello" + mRecordList.get(0).getTemp(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        card_symp.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
-//                startActivity(intent);
-            }
-        });
-
-
 
         card_test.setOnClickListener(new View.OnClickListener(){
 

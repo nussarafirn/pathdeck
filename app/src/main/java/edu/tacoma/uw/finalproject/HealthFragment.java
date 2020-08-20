@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import edu.tacoma.uw.finalproject.authenticate.LoginFragment;
 
 /**
@@ -45,7 +47,9 @@ public class HealthFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -86,6 +90,20 @@ public class HealthFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                launchHealthAddFragment();
+            }
+        });
         return view;
+    }
+    public void launchHealthAddFragment(){
+        HealthAddFragment healthAddFragment = new HealthAddFragment();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, healthAddFragment).commit();
     }
 }

@@ -56,7 +56,7 @@ public class HealthAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //healthAddListener = (HealthAddListener) getActivity();
+        healthAddListener = (HealthAddListener) getActivity();
     }
 
     @Override

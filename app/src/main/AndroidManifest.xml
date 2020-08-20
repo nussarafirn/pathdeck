@@ -11,10 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
-        <activity android:name=".emailNotifyActivity"></activity>
+        <activity android:name=".RecordAddActivity"></activity>
+        <activity android:name=".emailNotifyActivity" />
         <activity android:name=".RegistrationActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +36,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.tacoma.uw.finalproject.MainMenuActivity" />
         </activity>
-
         <activity
             android:name=".NoteDetailActivity"
             android:parentActivityName=".NoteListActivity"
@@ -46,8 +44,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.tacoma.uw.finalproject.MainMenuActivity" />
         </activity>
-
-
     </application>
 
 </manifest>

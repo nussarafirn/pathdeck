@@ -4,4 +4,7 @@
     <string name="add_Notes">https://pathdeck-backend.herokuapp.com/addnotes</string>
     <string name="register_user">https://pathdeck-backend.herokuapp.com/register</string>
     <string name="login_user">https://pathdeck-backend.herokuapp.com/login</string>
+    <string name="get_record">https://pathdeck-backend.herokuapp.com/getrec</string>
+    <string name="add_record">https://pathdeck-backend.herokuapp.com/addrec</string>
+
 </resources>

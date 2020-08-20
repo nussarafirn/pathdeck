@@ -99,6 +99,14 @@ public class Record implements Serializable {
         return recordList;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getRecId() {
         return id;
     }

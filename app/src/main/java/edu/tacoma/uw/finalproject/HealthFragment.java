@@ -1,5 +1,6 @@
 package edu.tacoma.uw.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -44,15 +45,17 @@ import edu.tacoma.uw.finalproject.model.Record;
  * create an instance of this fragment.
  */
 public class HealthFragment extends Fragment {
-    public CardView card_temp;
-    public CardView card_symp;
-    public CardView card_test;
+    private CardView card_temp;
+    private CardView card_symp;
+    private CardView card_test;
     private List<Record> mRecordList;
     public SharedPreferences mSharedPreferences;
     public final String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
     private TextView symptom;
     private TextView temp;
     private TextView testResult;
+    private TextView tempState;
+    private String username;
     public HealthFragment() {
         // Required empty public constructor
     }
@@ -75,6 +78,7 @@ public class HealthFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -89,6 +93,12 @@ public class HealthFragment extends Fragment {
         temp = view.findViewById(R.id.temp_text);
         symptom = view.findViewById(R.id.symptom_text);
         testResult = view.findViewById(R.id.test_text);
+        tempState = view.findViewById(R.id.bodyState_text);
+        /*if(Double.valueOf(temp.getText().toString()) > 99){
+            tempState.setText("Fever");
+        }*/
+        mSharedPreferences = this.getActivity().getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
+        username = mSharedPreferences.getString("username", null);
         card_temp.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -137,6 +147,7 @@ public class HealthFragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
+
         new RecordTask().execute(getString(R.string.get_record));
         //setupRecyclerView(mRecyclerView);
 
@@ -189,25 +200,45 @@ public class HealthFragment extends Fragment {
                         //setupRecyclerView((RecyclerView) mRecyclerView);
                     }
                 }
-                //textTo.setText(getEmailList());
-                temp.setText(String.valueOf(mRecordList.get(mRecordList.size()-1).getTemp()));
+                temp.setText(getTemp() +" °F");
+                symptom.setText(getSymp());
+                testResult.setText(getTestResult());
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "JSON Error: " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         }
     }
-    private double getTempList() {
-        List<Double> tempList = new ArrayList<>();
-        String username = mSharedPreferences.getString("username", null);
+    private String getTemp() {
+        List<String> tempList = new ArrayList<>();
+
         for (Record each : mRecordList) {
-            if(each.getUsername().equalsIgnoreCase(username)) {
-                tempList.add(each.getTemp());
+            if (each.getUsername().equalsIgnoreCase(username)) {
+                tempList.add(String.valueOf(each.getTemp()));
             }
+
             //emailList.add(note.getNoteEmail());
         }
 
         return tempList.get(tempList.size()-1);
     }
-
+    private String getSymp() {
+        //String username = mSharedPreferences.getString("username", null);
+        List<String> sympList = new ArrayList<>();
+        for (Record each : mRecordList) {
+            if (each.getUsername().equalsIgnoreCase(username)) {
+                sympList.add(each.getSymp());
+            }
+        }
+        return sympList.get(sympList.size()-1);
+    }
+    private String getTestResult() {
+        List<String> testRecList = new ArrayList<>();
+        for (Record each : mRecordList) {
+            if (each.getUsername().equalsIgnoreCase(username)) {
+                testRecList.add(each.getRecTest());
+            }
+        }
+        return testRecList.get(testRecList.size()-1);
+    }
 }

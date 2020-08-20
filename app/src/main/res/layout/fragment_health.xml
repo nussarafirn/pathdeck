@@ -62,11 +62,12 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
-                                android:text="37.01 °C"
+                                android:text=""
                                 android:textColor="#ffff"
                                 android:textSize="35dp" />
 
                             <TextView
+                                android:id="@+id/bodyState_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -134,7 +135,7 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
-                                android:text="None"
+                                android:text=""
                                 android:textColor="#ffff"
                                 android:textSize="35dp" />
 
@@ -194,7 +195,7 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
-                                android:text="Negative"
+                                android:text=""
                                 android:textColor="#ffff"
                                 android:textSize="35dp" />
 

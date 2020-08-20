@@ -219,10 +219,13 @@ public class HealthFragment extends Fragment {
                         //setupRecyclerView((RecyclerView) mRecyclerView);
                     }
                 }
-                temp.setText(getTemp() + " °F");
-                symptom.setText(getSymp());
-                testResult.setText(getTestResult());
-                tempState.setText(getTempState());
+                if (!mRecordList.isEmpty()) {
+                    temp.setText(getTemp() + " °F");
+                    symptom.setText(getSymp());
+                    testResult.setText(getTestResult());
+                    tempState.setText(getTempState());
+                }
+
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "JSON Error: " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
@@ -237,12 +240,14 @@ public class HealthFragment extends Fragment {
      */
     private double getTemp() {
         List<Double> tempList = new ArrayList<>();
-        for (Record each : mRecordList) {
-            if (each.getUsername().equalsIgnoreCase(username)) {
-                tempList.add(each.getTemp());
+        if (mRecordList != null) {
+
+            for (Record each : mRecordList) {
+                if (each.getUsername().equalsIgnoreCase(username)) {
+                    tempList.add(each.getTemp());
+                }
             }
         }
-
         return tempList.get(tempList.size()-1);
     }
     /**

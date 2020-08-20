@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import edu.tacoma.uw.finalproject.model.Note;
-import edu.tacoma.uw.finalproject.model.NoteContent;
 
 /**
  * A fragment representing a single Item detail screen.

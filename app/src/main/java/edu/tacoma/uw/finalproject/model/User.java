@@ -12,6 +12,10 @@ import java.util.List;
 
 /**
  * This class represents the user class
+ *
+ * Author: Firn Tieanklin
+ * Version: 2.0
+ * Date: 08/09/20
  */
 public class User implements Serializable{
 

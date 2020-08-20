@@ -44,21 +44,44 @@ public class Record implements Serializable {
      */
     private String rec_date;
 
+    /**
+     * record id field in the Records table
+     */
     public static final String REC_ID = "recordid";
+
+    /**
+     * username field in the Records table
+     */
     public static final String REC_USERNAME = "username";
+
+    /**
+     * temperature field in the Records table
+     */
     public static final String REC_TEMP = "temp";
+
+    /**
+     * symptoms field in the Records table
+     */
     public static final String REC_SYMP = "symp";
+
+    /**
+     * COVID-19 testing result field in the Records table
+     */
     public static final String REC_TEST = "rec_test";
+
+    /**
+     * date field in the Records table
+     */
     public static final String REC_DATE = "rec_date";
 
     /**
-     * Constructor contructs all the fields in Record class
+     * Constructor contructs all the fields in Record class based on the given information
      *
-     * @param id
-     * @param temp
-     * @param symp
-     * @param rec_test
-     * @param rec_date
+     * @param id the given record ID
+     * @param temp the given body temperature
+     * @param symp the given symptoms
+     * @param rec_test the given COVID testing result
+     * @param rec_date the given date for the record
      */
     public Record(String id, String username, double temp, String symp, String rec_test, String rec_date) {
         this.id = id;
@@ -74,9 +97,9 @@ public class Record implements Serializable {
      * make the file to JSONArray and take the JSON element, store the information the note class return list
      * of all members in the Records table
      *
-     * @param recJson
-     * @return
-     * @throws JSONException
+     * @param recJson JSON object that has the information of a record
+     * @return the list of all records
+     * @throws JSONException if the recJson is null
      */
     public static List<Record> parseRecJson(String recJson) throws JSONException {
         List<Record> recordList = new ArrayList<>();

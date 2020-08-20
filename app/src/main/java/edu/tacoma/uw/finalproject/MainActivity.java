@@ -27,6 +27,11 @@ import edu.tacoma.uw.finalproject.model.User;
 /**
  * This class is the main class that contains the login.
  * It get launched if the user has not yet sign in.
+ *
+ *
+ * Author: Firn Tieanklin
+ * Version: 3.0
+ *  Date: 08/10/20
  */
 public class MainActivity extends AppCompatActivity implements LoginFragment.LoginFragmentListener {
 
@@ -196,6 +201,11 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
             return response;
         }
 
+        /**
+         * Logging in the user with given username and password
+         *
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to add the new user")) {

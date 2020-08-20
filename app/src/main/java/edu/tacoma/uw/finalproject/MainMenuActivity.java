@@ -1,9 +1,4 @@
 package edu.tacoma.uw.finalproject;
-/**
- * This MainMenu will lunch after the user login successfully
- * @author Kieu Trinh
- * @version summer 2020
- */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +13,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
+/**
+ * This MainMenu will lunch after the user login successfully
+ * @author Firn Tieanklin
+ * @version summer 2020
+ */
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
@@ -66,13 +65,23 @@ public class MainMenuActivity extends AppCompatActivity {
                 }
             };
 
-
+    /**
+     * Show the log out button
+     * @param menu menu bar
+     * @return true if successful
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
         return true;
     }
 
+    /**
+     * Clears the sharedPreferences if user clicks log out
+     *
+     * @param item log out item
+     * @return log out from the application
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {

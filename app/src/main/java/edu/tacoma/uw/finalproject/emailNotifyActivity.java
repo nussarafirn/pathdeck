@@ -1,4 +1,8 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * This class allow user to send the notify email to all the people in the notes that
+ * have been contacted in 14 days
+ */
 
 import android.content.Context;
 import android.content.Intent;
@@ -41,13 +45,36 @@ import java.util.concurrent.TimeUnit;
 import edu.tacoma.uw.finalproject.model.Note;
 
 public class emailNotifyActivity extends AppCompatActivity {
+    /**
+     * Access the editText to
+     */
     private EditText textTo;
+    /**
+     * Access the editText subject
+     */
     private EditText textSubject;
+    /**
+     * Access the editText message
+     */
     private EditText textMessage;
+    /**
+     * contain the note list in the notes table
+     */
     private List<Note> mNoteList;
+    /**
+     * access to the username that have been save
+     */
     public SharedPreferences mSharedPreferences;
+    /*
+     * The file stores user information
+     */
     public final String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
 
+    /**
+     * Match all the variable fields with the editText in UI to access and set the text information,
+     * call the mail API on the android.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,20 +88,21 @@ public class emailNotifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendEmail();
-                //Toast.makeText(emailNotifyActivity.this, "Hello" + getEmailList(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
 
-
+    /**
+     * take email all people save in covid notes in 14 days and set it
+     * automatically in the To email and launch the current mail box on the user device
+     */
     private void sendEmail(){
         String recipientList = textTo.getText().toString();
         String[] receipients = recipientList.split(",");
         String subject = textSubject.getText().toString();
         String message = textMessage.getText().toString();
-
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_EMAIL, receipients);
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
@@ -82,14 +110,26 @@ public class emailNotifyActivity extends AppCompatActivity {
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent, ""));
     }
+
+    /**
+     * Pass in the URL to the NotesTask class to get the JsonArray
+     */
     protected void onResume(){
         super.onResume();
         new NotesTask().execute(getString(R.string.get_Notes));
-        //setupRecyclerView(mRecyclerView);
+
 
     }
-    private class NotesTask extends AsyncTask<String, Void, String> {
 
+    /**
+     * class that take the urls string, read the urls and return the json array.
+     */
+    private class NotesTask extends AsyncTask<String, Void, String> {
+        /**
+         * take and read the urls to text string
+         * @param urls
+         * @return string
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -119,6 +159,10 @@ public class emailNotifyActivity extends AppCompatActivity {
             return response;
         }
 
+        /**
+         * take the string that have been read from urls and add to the note list
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to")) {
@@ -144,6 +188,11 @@ public class emailNotifyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * look for all the email contained in the notes table that less than 14 days and
+     * belong to current user, and put together in one text string
+     * @return mEmailList
+     */
     private String getEmailList() {
         List<String> emailList = new ArrayList<>();
         String username = mSharedPreferences.getString("username", null);
@@ -157,6 +206,12 @@ public class emailNotifyActivity extends AppCompatActivity {
         return mEmailList;
     }
 
+    /**
+     * Calculate the days that the notes were created to the current date,
+     * and return true of the notes is less than 14
+     * @param start
+     * @return boolean true/false
+     */
     private boolean differentDays(String start) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         try{

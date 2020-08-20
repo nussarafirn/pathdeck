@@ -1,4 +1,7 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * display all the notes under the list view and allow the user to access to the note detail
+ */
 
 import android.content.Context;
 import android.content.Intent;
@@ -59,10 +62,19 @@ public class NoteListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    /**
+     * contain the list of notes that have been saved by user
+     */
     private List<Note> mNoteList;
+    /**
+     * use to display the item in list view
+     */
     private RecyclerView mRecyclerView;
 
-
+    /**
+     * create all the interface for the UI and launch the NoteAddFragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,19 +88,10 @@ public class NoteListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //       .setAction("Action", null).show();
                 launchNoteAddFragment();
             }
         });
-
-
-
         if (findViewById(R.id.item_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
         }
 
@@ -96,6 +99,10 @@ public class NoteListActivity extends AppCompatActivity {
         assert mRecyclerView != null;
         setupRecyclerView((RecyclerView) mRecyclerView);
     }
+
+    /**
+     * call and launch the NoteAddFragment class for the add floating button
+     */
     private void launchNoteAddFragment() {
         NoteAddFragment noteAddFragment = new NoteAddFragment();
 
@@ -109,6 +116,10 @@ public class NoteListActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    /**
+     * Pass in the urls to get the list from JSONObject
+     */
     @Override
     protected void onResume(){
         super.onResume();
@@ -116,6 +127,10 @@ public class NoteListActivity extends AppCompatActivity {
         setupRecyclerView(mRecyclerView);
     }
 
+    /**
+     * display the data on the UI
+     * @param recyclerView
+     */
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         if(mNoteList != null){
             recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter
@@ -124,15 +139,31 @@ public class NoteListActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * This class display all the items under list view
+     */
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-
+        /**
+         * The class that will use recyclerview to display the list
+         */
         private final NoteListActivity mParentActivity;
-
+        /**
+         * Contain the list of Note that have been saved by the user
+         */
         private final List<Note> mValues;
+        /**
+         * Whether or not the activity is in two-pane mode, i.e. running on a tablet
+         * device.
+         */
         private final boolean mTwoPane;
+        /**
+         * access to the username that have been save
+         */
         public SharedPreferences mSharedPreferences;
+        /*
+         * The file stores user information
+         */
         public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
 
 
@@ -160,40 +191,53 @@ public class NoteListActivity extends AppCompatActivity {
             }
         };
 
+        /**
+         * COnstructor to initialize all the fields
+         * @param parent
+         * @param items
+         * @param twoPane
+         */
         SimpleItemRecyclerViewAdapter(NoteListActivity parent,
                                       List<Note> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;
-
         }
-
+        /*
+        create the view for the activty
+         */
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_note_content, parent, false);
-            //mEmailList = emailList;
             return new ViewHolder(view);
         }
 
+        /**
+         * setup the listview to display the ID and Person name
+         * @param holder
+         * @param position
+         */
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 
             mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
             String username = mSharedPreferences.getString("username",null);
-            //TODO: add the date method
             if(mValues.get(position).getUsername().equalsIgnoreCase(username)){
                 holder.mIdView.setText(mValues.get(position).getNoteId());
                 holder.mContentView.setText(mValues.get(position).getNoteWho());
 
             }
-            //mEmailList = emailList;
+
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }
 
-
+        /**
+         * count the items in mvalues list
+         * @return int size
+         */
         @Override
         public int getItemCount() {
             return mValues.size();
@@ -227,9 +271,15 @@ public class NoteListActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * class that take the urls string, read the urls and return the json array.
+     */
     private class NotesTask extends AsyncTask<String, Void, String> {
-
+        /**
+         * take and read the urls to text string
+         * @param urls
+         * @return string
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -258,7 +308,10 @@ public class NoteListActivity extends AppCompatActivity {
             }
             return response;
         }
-
+        /**
+         * take the string that have been read from urls and add to the note list
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to")) {

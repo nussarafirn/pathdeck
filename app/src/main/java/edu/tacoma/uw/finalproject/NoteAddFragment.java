@@ -1,4 +1,7 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * This class take all information that user have filled in the UI to save to the table
+ */
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,20 +29,30 @@ import edu.tacoma.uw.finalproject.model.Note;
  */
 public class NoteAddFragment extends Fragment {
 
+    /**
+     * the variable to reference the AddListener interface
+     */
     private AddListener mAddListener;
+
+    /**
+     * the interface contain the addNote to add the note information to table in
+     * NoteDetailActivity class
+     */
     public interface AddListener {
         public void addNote(Note note);
     }
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * access to the username that have been save
+     */
+    private SharedPreferences mSharedPreferences;
+    /**
+     * The file stores user information
+     */
+    public final static String SIGN_IN_FILE_PREFS= "edu.tacoma.uw.finalproject.sign_in_file_prefs";
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    private SharedPreferences mSharedPreferences;
-    public final static String SIGN_IN_FILE_PREFS= "edu.tacoma.uw.finalproject.sign_in_file_prefs";
-    private NoteListActivity passUsername;
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -56,7 +69,6 @@ public class NoteAddFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment NoteAddFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static NoteAddFragment newInstance(String param1, String param2) {
         NoteAddFragment fragment = new NoteAddFragment();
         Bundle args = new Bundle();
@@ -67,27 +79,33 @@ public class NoteAddFragment extends Fragment {
 
     }
 
+    /**
+     * cast the interface from fragment to activity to call the addNotes function
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
         mAddListener = (AddListener) getActivity();
 
     }
 
+    /**
+     * get all the information the user have enter on the UI and pass to be added to the table
+     * by the addNotes methods.Make sure all the information is in correct format before passing it to
+     * the add function.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
 
         View v = inflater.inflate(R.layout.fragment_note_add, container, false);
         getActivity().setTitle("Add new Note");
         mSharedPreferences = this.getActivity().getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
-
         final EditText noteWhoEditText = v.findViewById(R.id.note_name);
         final EditText notePhoneEditText = v.findViewById(R.id.note_phone);
         final EditText noteEmailEditText = v.findViewById(R.id.note_email);
@@ -123,6 +141,11 @@ public class NoteAddFragment extends Fragment {
         return v;
     }
 
+    /**
+     * Take the date and format it to MM/dd/yyyy
+     * @param date
+     * @return string
+     */
     public String setCurrentDay(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         return sdf.format(date);

@@ -1,4 +1,7 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * This class will display the detail data of each notes on the UI
+ */
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -29,7 +32,7 @@ public class NoteDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The dummy content this fragment is presenting.
+     * references to Note class to get and access the note value and variable
      */
     private Note mNote;
 
@@ -40,16 +43,15 @@ public class NoteDetailFragment extends Fragment {
     public NoteDetailFragment() {
     }
 
+    /**
+     * Before running, get the UI interface setup
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             mNote = (Note) getArguments().getSerializable(ARG_ITEM_ID);
-
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null){
@@ -58,14 +60,19 @@ public class NoteDetailFragment extends Fragment {
         }
     }
 
+    /**
+     * create the view of the note detail bu display the data in specific place
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.note_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
         if (mNote != null) {
-            //((TextView) rootView.findViewById(R.id.item_detail)).setText(mNote.getNoteId());
             ((TextView) rootView.findViewById(R.id.item_who)).setText(mNote.getNoteWho());
             ((TextView) rootView.findViewById(R.id.item_phone)).setText(mNote.getNotePhone());
             ((TextView) rootView.findViewById(R.id.item_email)).setText(mNote.getNoteEmail());

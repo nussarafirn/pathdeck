@@ -43,7 +43,9 @@ public class Note implements Serializable {
      * the id field in note table
      */
     public static final String ID = "notesid";
-
+    /**
+     * the username field in note table
+     */
     public static final String Note_username = "username";
     /**
      * the person's name field in note table

@@ -1,4 +1,8 @@
 package edu.tacoma.uw.finalproject;
+/**
+ * This is a main home page of pathdeck which will give user option to
+ * go to profile, health, notification page and view the list of notes
+ */
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +56,13 @@ public class CalendarFragment extends Fragment {
         return fragment;
     }
 
-
+    /**
+     * initalize all the variable file and implement the clicker for button
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +74,6 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-
                 PopupMenu popup = new PopupMenu(getActivity(), addNotes);
                 popup.getMenuInflater().inflate(R.menu.covidnotemenu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -75,12 +84,6 @@ public class CalendarFragment extends Fragment {
                             case R.id.covid_note:
                                 openNote();
                                 return true;
-                            case R.id.memo_note:
-                                //Toast.makeText(getActivity(), "list" + call.emailList, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), emailNotifyActivity.class);
-                                startActivity(intent);
-                                return true;
-
                         }
                         return false;
                     }
@@ -93,7 +96,9 @@ public class CalendarFragment extends Fragment {
     }
 
 
-
+    /**
+     * call and launch the NotelistActivity class
+     */
     public void openNote(){
         Intent intent = new Intent(getActivity(), NoteListActivity.class);
         startActivity(intent);

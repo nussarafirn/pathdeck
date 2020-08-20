@@ -69,15 +69,6 @@ public class NoteDetailActivity extends AppCompatActivity implements NoteAddFrag
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // savedInstanceState is non-null when there is fragment state
-        // saved from previous configurations of this activity
-        // (e.g. when rotating the screen from portrait to landscape).
-        // In this case, the fragment will automatically be re-added
-        // to its container so we don"t need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        //
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
@@ -103,25 +94,23 @@ public class NoteDetailActivity extends AppCompatActivity implements NoteAddFrag
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
             navigateUpTo(new Intent(this, NoteListActivity.class));
 
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * save all information to the JSON object and pass the urls to add the information
+     * to the backend table
+     * @param note
+     */
     @Override
     public void addNote(Note note) {
         StringBuilder url = new StringBuilder(getString(R.string.add_Notes));
         mNoteJSON = new JSONObject();
         try{
-            //Toast.makeText(this, "creation test on adding note" + note.getUsername(), Toast.LENGTH_SHORT).show();
             mNoteJSON.put(Note.Note_Who, note.getNoteWho());
             mNoteJSON.put("Username", note.getUsername());
             mNoteJSON.put(Note.Note_Phone, note.getNotePhone());
@@ -130,12 +119,22 @@ public class NoteDetailActivity extends AppCompatActivity implements NoteAddFrag
             mNoteJSON.put(Note.Note_Location, note.getNoteLocation());
             new AddNoteAsyncTask().execute(url.toString());
         } catch(JSONException e){
-        //catch(Exception e){
             Toast.makeText(this, "Error with JSON creation on adding note " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * Take the urls and read all the urls to text string and use that text string
+     * to get all the notes information in JSONObject to store in notes list
+     */
     private class AddNoteAsyncTask extends AsyncTask<String, Void, String> {
+        /**
+         * read the urls and request for the Post and setup all the information
+         * in an array to be ready for adding into the table
+         * @param urls
+         * @return String
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -174,6 +173,10 @@ public class NoteDetailActivity extends AppCompatActivity implements NoteAddFrag
             return response;
         }
 
+        /**
+         * Take the all data have been read and add to the JsonObject
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             if (s.startsWith("Unable to add the new course")) {

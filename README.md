@@ -4,14 +4,19 @@
 ## Features
 - Users will be able to login using the registered username and password credentials. 
 - If not yet register, users can create an account by clicking signup on the main menu page. 
-- Users will be able to see all the past notes indicating who they were in contact with, those people's phone informaiton including emails and phone numbers, date that they interacted, and location that they met. These will be retrieved from the database using web services. 
-
+- Users will be able to see all the past notes indicating who they were in contact with, those people's phone informaiton including emails and phone numbers, date that they interacted, and location that they met. These will be retrieved from the database using web services.
+- User will be able to add their health information into the health page and the page will always update the newst data from the last time the user login as displaying the temperature, symptoms and test result. 
+- All the notes are only displayed if the save date to the current dates are less than 14 days 
+- User will be able to sent the email notification to all the people in the 14 that have been saved in the notes
 ## User Stories
 
 ### High Priority
-- As a person that meets friends and family often, I want to be able to track whom I was with, so that I can keep track and look back into my diary to see who I was with and what I was doing at the time.
--  As a person who concerns about my privacy, I as a user want to be able to sign in authentication to use the service and sign out after I finish. So that I can make sure no one else other than me has access to my personal information regarding people that I was in contact with and when/where I have been. 
-- As a user, I want to be able to sign up for a new account so that I can have a new account when I need it for other purposes.
+US01: As a person that meets friends and family often, I want to be able to track whom I was with, so that I can keep track and look back into my diary to see who I was with and what I was doing at the time.  
+US02: As a person who cares about others, I want the notes to keep track of my activities in the 14 days period so that I can quickly notify people when I get infected .
+US03: As a person who is concerned about the COVID-19, I want to have an option to notify people who I got in contact with in the last 14 days or when I notice the symptoms. So that those people could get tested reducing the spread to their friends and family. 
+US04: As a person who gets sick and has a headache often, I want to be able to track my health, symptoms, body temperature etc. So that I can differentiate the symbols between my regular headache and any additional symptoms that would relate to COVID-19. 
+US05 - As a person who concerns about my privacy, I as a user want to be able to sign in authentication to use the service and sign out after I finish. So that I can make sure no one else other than me has access to my personal information regarding people that I was in contact with and when/where I have been. 
+US06 As a user, I want to be able to sign up for a new account so that I can have a new account when I need it for other purposes.
 
 ### Low Priority
 - As a user, I want to be able to choose which notes I want to use so that I can separate my memo notes and covid. 
@@ -33,3 +38,6 @@ We got the dependencies error when trying to push the the notes table onto the d
 Updated error fixed on 7/8/20
 
  The error has been fix from the backend code in Register.js inside the INSERT statement. The prvious version doesn't specify the parameters, but that was required since the user input were not directly map to the table fields. 
+
+Updated 8/20/20
+no errors

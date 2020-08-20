@@ -212,11 +212,13 @@ public class HealthFragment extends Fragment {
                             jsonObject.getString("records"));
                     if (!mRecordList.isEmpty()) {
                         //setupRecyclerView((RecyclerView) mRecyclerView);
+                        temp.setText(getTemp() + " °F");
+                        symptom.setText(getSymp());
+                        testResult.setText(getTestResult());
                     }
                 }
-                temp.setText(getTemp() + " °F");
-                symptom.setText(getSymp());
-                testResult.setText(getTestResult());
+
+
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "JSON Error: " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
@@ -230,14 +232,17 @@ public class HealthFragment extends Fragment {
      * @return temperature type string
      */
     private String getTemp() {
+        String temp = "0";
         List<String> tempList = new ArrayList<>();
         for (Record each : mRecordList) {
             if (each.getUsername().equalsIgnoreCase(username)) {
                 tempList.add(String.valueOf(each.getTemp()));
             }
         }
-
-        return tempList.get(tempList.size()-1);
+        if(!tempList.isEmpty()){
+            temp = tempList.get(tempList.size()-1);
+        }
+        return temp;
     }
     /**
      * from the record list, get the list of the symptoms and
@@ -245,14 +250,17 @@ public class HealthFragment extends Fragment {
      * @return symptom
      */
     private String getSymp() {
-        //String username = mSharedPreferences.getString("username", null);
+        String symp = "none";
         List<String> sympList = new ArrayList<>();
         for (Record each : mRecordList) {
             if (each.getUsername().equalsIgnoreCase(username)) {
                 sympList.add(each.getSymp());
             }
         }
-        return sympList.get(sympList.size()-1);
+        if(!sympList.isEmpty()) {
+            symp = sympList.get(sympList.size()-1);
+        }
+        return symp;
     }
     /**
      * from the record list, get the list of the test result and
@@ -260,12 +268,16 @@ public class HealthFragment extends Fragment {
      * @return symptom
      */
     private String getTestResult() {
+        String Result = "Negative";
         List<String> testRecList = new ArrayList<>();
         for (Record each : mRecordList) {
             if (each.getUsername().equalsIgnoreCase(username)) {
                 testRecList.add(each.getRecTest());
             }
         }
-        return testRecList.get(testRecList.size()-1);
+        if(!testRecList.isEmpty()) {
+            Result = testRecList.get(testRecList.size()-1);
+        }
+        return Result;
     }
 }

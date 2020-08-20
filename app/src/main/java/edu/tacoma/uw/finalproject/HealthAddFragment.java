@@ -32,6 +32,8 @@ public class HealthAddFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
 //    private NoteListActivity passUsername;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
     public interface HealthAddListener {
         public void addHealth(Record record);

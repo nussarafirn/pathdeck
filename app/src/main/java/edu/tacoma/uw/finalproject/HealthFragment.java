@@ -142,7 +142,7 @@ public class HealthFragment extends Fragment {
     public void launchHealthAddFragment(){
         HealthAddFragment healthAddFragment = new HealthAddFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, healthAddFragment).commit();
+                .replace(R.id.health_item_detail_container, healthAddFragment).commit();
     }
     @Override
     public void onResume(){

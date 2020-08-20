@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.Log
      * the login information.
      */
     private SharedPreferences mSharedPreferences;
-
+    private boolean mTest = true;
     /**
      * JSON object to pass in login credentials
      */

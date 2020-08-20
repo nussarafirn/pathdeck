@@ -32,6 +32,10 @@ Here are the list of testing accounts to test the funtionality of the applicatio
     - Username: firn
     - Password : firn1234
 
+###SharedPreferences
+The sharedPrefences save the username and wether if the account is set to remember. The sharereference have been user in all the activity and fragment class
+to access to the username. The data is saved edu.tacoma.uw.finalproject.sign_in_file_prefs. 
+
 ### Errors
 We got the dependencies error when trying to push the the notes table onto the database. It throws an error on needing the '@protobufjs/utf8@1.1.0' to be installed, but we have checked under nodes_modules directory, and it seems like we already have it there. So we were not sure what went wrong. That being said, the first high priority of showing the covid notes could not be showed and will throw NullPointerException because we could not add a new note to show on the Covid note (after click Add Notes > Covid Note). The note is currently empty for this testing user, therefore, it then throws NullPointerException when retreiving an empty NoteID. We did not have enough time figure it out, but this will be carried to the next sprint.  
 

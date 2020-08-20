@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +46,7 @@ public class Record implements Serializable {
 
     public static final String REC_ID = "recordid";
     public static final String REC_USERNAME = "username";
-    public static final double REC_TEMP = 0.0;
+    public static final String REC_TEMP = "temp";
     public static final String REC_SYMP = "symp";
     public static final String REC_TEST = "rec_test";
     public static final String REC_DATE = "rec_date";
@@ -90,7 +89,7 @@ public class Record implements Serializable {
                 JSONObject obj = arr.getJSONObject(i);
                 //using note fields to get JSON strong object
                 Record record = new Record(obj.getString(Record.REC_ID), obj.getString(Record.REC_USERNAME),
-                        obj.getString(Record.REC_TEMP), obj.getString(Record.REC_SYMP),
+                        obj.getDouble(Record.REC_TEMP), obj.getString(Record.REC_SYMP),
                         obj.getString(Record.REC_TEST), obj.getString(Record.REC_DATE));
                 recordList.add(record);
             }
@@ -115,11 +114,11 @@ public class Record implements Serializable {
         this.id = id;
     }
 
-    public String getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(String temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 

@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.tacoma.uw.finalproject.model.Note;
 import edu.tacoma.uw.finalproject.model.Record;
 
@@ -57,6 +60,7 @@ public class HealthAddFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        healthAddListener = (HealthAddListener) getActivity();
+
     }
 
     @Override
@@ -114,4 +118,6 @@ public class HealthAddFragment extends Fragment {
         });
         return v;
     }
+
+
 }

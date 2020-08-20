@@ -71,7 +71,6 @@ public class HealthAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        healthAddListener = (HealthAddListener) getActivity();
     }
 
     @Override
@@ -165,8 +164,6 @@ public class HealthAddFragment extends Fragment {
                     wr.write(recJSON.toString());
                     wr.flush();
                     wr.close();
-
-                    Log.i(ADD_REC, "HEEEEERRRRRRRRRRRE");
 
                     InputStream content = urlConnection.getInputStream();
 

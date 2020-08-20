@@ -165,11 +165,12 @@ public class NoteTest {
 
     @Test
     public void testInvalidSetLocation() {
+
         try {
             note.setNoteLocation("");
         }catch (IllegalArgumentException e){
             String message = "location cannot be empty";
-            assertEquals(message, note.getNoteLocation());
+            assertEquals(message, e.getMessage());
         }
     }
 

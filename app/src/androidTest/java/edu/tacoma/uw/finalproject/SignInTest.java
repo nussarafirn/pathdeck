@@ -40,7 +40,7 @@ public class SignInTest {
         onView(withId(R.id.login_password)).perform(closeSoftKeyboard());
         onView(withId(R.id.loginButton)).perform(click());
 
-        onView(withText("ADD NOTES"))
+        onView(withText("SIGN OUT"))
                 .inRoot(withDecorView(not(is(
                         mActivityRule.getActivity()
                                 .getWindow()

@@ -222,15 +222,6 @@ public class HealthFragment extends Fragment {
                         testResult.setText(getTestResult());
                     }
                 }
-<<<<<<< HEAD
-
-
-=======
-                temp.setText(getTemp() + " °F");
-                symptom.setText(getSymp());
-                testResult.setText(getTestResult());
-                tempState.setText(getTempState());
->>>>>>> aae76148b93d1aa849c77a55e10c56d75b874bab
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "JSON Error: " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
@@ -243,14 +234,10 @@ public class HealthFragment extends Fragment {
      * return the newest temperature that been enter from the user
      * @return temperature type string
      */
-<<<<<<< HEAD
-    private String getTemp() {
-        String temp = "0";
-        List<String> tempList = new ArrayList<>();
-=======
+
     private double getTemp() {
+        double temp = 0;
         List<Double> tempList = new ArrayList<>();
->>>>>>> aae76148b93d1aa849c77a55e10c56d75b874bab
         for (Record each : mRecordList) {
             if (each.getUsername().equalsIgnoreCase(username)) {
                 tempList.add(each.getTemp());
@@ -299,7 +286,7 @@ public class HealthFragment extends Fragment {
     }
 
     private String getTempState() {
-        double temp = getTemp();
+       double temp = getTemp();
         String s = "";
 
         if (temp > 99) {

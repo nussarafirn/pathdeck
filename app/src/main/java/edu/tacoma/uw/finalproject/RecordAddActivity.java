@@ -42,6 +42,11 @@ public class RecordAddActivity extends AppCompatActivity implements HealthAddFra
                         .setAction("Action", null).show();
             }
         });
+//
+//        // launch fragment
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.fragment_container, new HealthAddFragment())
+//                .commit();
     }
 
 
@@ -50,13 +55,21 @@ public class RecordAddActivity extends AppCompatActivity implements HealthAddFra
         StringBuilder url = new StringBuilder(getString(R.string.add_record));
         recJSON = new JSONObject();
 
+        Toast.makeText(this, "Here"
+                ,
+                Toast.LENGTH_SHORT).show();
+
         try {
             recJSON.put(Record.REC_USERNAME, record.getUsername());
-            recJSON.put(String.valueOf(Record.REC_TEMP), record.getTemp());
+            recJSON.put(Record.REC_TEMP, record.getTemp());
             recJSON.put(Record.REC_SYMP, record.getSymp());
             recJSON.put(Record.REC_TEST, record.getUsername());
             recJSON.put(Record.REC_DATE, record.getRecDate());
            new RecordAddAsyncTask().execute(url.toString());
+
+            Toast.makeText(this, "Here2"
+                    ,
+                    Toast.LENGTH_SHORT).show();
 
         } catch (JSONException e) {
 
@@ -73,6 +86,7 @@ public class RecordAddActivity extends AppCompatActivity implements HealthAddFra
             HttpURLConnection urlConnection = null;
             for (String url : urls) {
                 try {
+
                     URL urlObject = new URL(url);
                     urlConnection = (HttpURLConnection) urlObject.openConnection();
                     urlConnection.setRequestMethod("POST");
@@ -86,6 +100,9 @@ public class RecordAddActivity extends AppCompatActivity implements HealthAddFra
                     wr.write(recJSON.toString());
                     wr.flush();
                     wr.close();
+
+                    Log.i(ADD_REC, "HEEEEERRRRRRRRRRRE");
+
                     InputStream content = urlConnection.getInputStream();
 
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(content));

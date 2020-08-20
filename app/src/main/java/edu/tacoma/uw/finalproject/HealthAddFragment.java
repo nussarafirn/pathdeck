@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,8 @@ public class HealthAddFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment HealthAddFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static HealthAddFragment newInstance(String param1, String param2) {
         HealthAddFragment fragment = new HealthAddFragment();
         Bundle args = new Bundle();
@@ -59,8 +57,7 @@ public class HealthAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        healthAddListener = (HealthAddListener) getActivity();
-
+        healthAddListener = (HealthAddListener) getActivity();
     }
 
     @Override
@@ -88,14 +85,12 @@ public class HealthAddFragment extends Fragment {
                 String rec_test = filledTest.getText().toString();
                 String rec_date = filledDate.getText().toString();
 
-                Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
-                        Toast.LENGTH_SHORT).show();
-
-                if (temp < 90.0 || temp > 130.0){
-                    Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
-                            Toast.LENGTH_SHORT).show();
-                    filledTemp.requestFocus();
-                }else if(TextUtils.isEmpty(symp)){
+//                if (temp < 90.0 || temp > 130.0){
+//                    Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
+//                            Toast.LENGTH_SHORT).show();
+//                    filledTemp.requestFocus();
+//                }else
+                    if(TextUtils.isEmpty(symp)){
                     Toast.makeText(v.getContext(), "Enter valid symptom, enter N/A if not applicable",
                             Toast.LENGTH_SHORT).show();
                     filledSymp.requestFocus();
@@ -109,9 +104,14 @@ public class HealthAddFragment extends Fragment {
 //                            || !rec_test.equalsIgnoreCase("Negative")
 //                            || !rec_test.equalsIgnoreCase("N/A")
                 }else{
+
+                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE2");
                     Record record = new Record(recID, username, temp, symp,rec_test, rec_date);
+                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE2.5");
                     if (healthAddListener != null){
+                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE3");
                         healthAddListener.addHealth(record);
+
                     }
                 }
             }

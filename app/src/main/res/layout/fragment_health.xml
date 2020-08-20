@@ -6,325 +6,228 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     tools:context=".HealthFragment"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical">
 
-<!--    "Body Temperature"-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_temp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="173dp">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:background="@drawable/card_bg_green"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <!--    "Body Temperature"-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_temp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="30dp"
+                app:cardCornerRadius="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="173dp">
 
                 <LinearLayout
+                    android:background="@drawable/card_bg_green"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Body Temperature"
-                        android:textColor="#ffff"
-                        android:textSize="24dp">
-                    </TextView>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:text="37.01 °C"
-                        android:textColor="#ffff"
-                        android:textSize="35dp" />
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:text="Normal"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#ffff"
-                        android:textSize="20dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Body Temperature"
+                                android:textColor="#ffff"
+                                android:textSize="24dp">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:text="37.01 °C"
+                                android:textColor="#ffff"
+                                android:textSize="35dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="Normal"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:textColor="#ffff"
+                                android:textSize="20dp" />
 
 
 
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <!--for Symptoms-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_symp"
-        android:layout_width="match_parent"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="173dp">
-
-        <LinearLayout
-            android:background="@drawable/card_bg_yellow"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <!--for Symptoms-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_symp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="30dp"
+                app:cardCornerRadius="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="173dp">
 
                 <LinearLayout
+                    android:background="@drawable/card_bg_yellow"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Symptoms"
-                        android:textColor="#ffff"
-                        android:textSize="24dp">
-                    </TextView>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:text="None"
-                        android:textColor="#ffff"
-                        android:textSize="35dp" />
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Symptoms"
+                                android:textColor="#ffff"
+                                android:textSize="24dp">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:text="None"
+                                android:textColor="#ffff"
+                                android:textSize="35dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <!--for testing-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_test"
-        android:layout_width="match_parent"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="173dp">
-
-        <LinearLayout
-            android:background="@drawable/card_bg_org"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <!--for testing-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_test"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="30dp"
+                app:cardCornerRadius="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="173dp">
 
                 <LinearLayout
+                    android:background="@drawable/card_bg_org"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Testing Result"
-                        android:textColor="#ffff"
-                        android:textSize="24dp">
-                    </TextView>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:text="Negative"
-                        android:textColor="#ffff"
-                        android:textSize="35dp" />
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:text="Click here to send notification!"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#ffff"
-                        android:textSize="15dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Testing Result"
+                                android:textColor="#ffff"
+                                android:textSize="24dp">
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:text="Negative"
+                                android:textColor="#ffff"
+                                android:textSize="35dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="Click here to send notification!"
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:textColor="#ffff"
+                                android:textSize="15dp" />
 
 
 
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
 
         </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-
+        
+    </ScrollView>
 
 </LinearLayout>
-
-<!--<androidx.cardview.widget.CardView&ndash;&gt;-->
-<!--        android:id="@+id/health_profile"-->
-<!--        android:layout_width="137dp"-->
-<!--        android:layout_height="129dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        app:cardBackgroundColor="@color/cardview_light_background"-->
-<!--        app:cardCornerRadius="250dp">-->
-<!---->
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:paddingTop="100dp"-->
-<!--            app:cardCornerRadius="250dp">-->
-<!---->
-<!--            <ImageView-->
-<!--                android:layout_width="140dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/logo" />-->
-<!---->
-<!---->
-<!--        </androidx.cardview.widget.CardView>-->
-<!---->
-<!--    </androidx.cardview.widget.CardView>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:background="@android:color/background_light"-->
-<!--    android:paddingTop="20dp"-->
-<!--    android:clickable="false">-->
-
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/health_profile"-->
-<!--        android:layout_width="137dp"-->
-<!--        android:layout_height="129dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        app:cardBackgroundColor="@color/cardview_light_background"-->
-<!--        app:cardCornerRadius="250dp">-->
-
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:paddingTop="100dp"-->
-<!--            app:cardCornerRadius="250dp">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="140dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/logo" />-->
-
-
-<!--        </androidx.cardview.widget.CardView>-->
-
-<!--    </androidx.cardview.widget.CardView>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/health_profile_name"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:padding="10dp"-->
-<!--        android:text="Jane Neilson"-->
-<!--        android:textSize="20dp"-->
-<!--        android:layout_below="@id/health_profile"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:textColor="@color/colorPrimary"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        />-->
-
-
-
-<!--    <GridView-->
-<!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_below="@+id/health_profile_name"-->
-<!--        android:layout_height="350dp"-->
-<!--        >-->
-
-<!--    </GridView>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/health_temp"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:clickable="true"-->
-<!--        android:layout_below="@+id/health_profile_name"-->
-<!--        android:text="TextView" />-->
-
-
-
-
-
-
-<!--</RelativeLayout>-->

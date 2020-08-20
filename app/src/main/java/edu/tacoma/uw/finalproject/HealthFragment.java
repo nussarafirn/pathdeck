@@ -220,6 +220,7 @@ public class HealthFragment extends Fragment {
                         temp.setText(getTemp() + " °F");
                         symptom.setText(getSymp());
                         testResult.setText(getTestResult());
+                        tempState.setText(getTempState());
                     }
                 }
             } catch (JSONException e) {

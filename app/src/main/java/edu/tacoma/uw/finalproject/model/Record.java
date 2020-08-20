@@ -90,7 +90,7 @@ public class Record implements Serializable {
                 JSONObject obj = arr.getJSONObject(i);
                 //using note fields to get JSON strong object
                 Record record = new Record(obj.getString(Record.REC_ID), obj.getString(Record.REC_USERNAME),
-                        obj.getDouble(String.valueOf(Record.REC_TEMP)), obj.getString(Record.REC_SYMP),
+                        obj.getString(Record.REC_TEMP), obj.getString(Record.REC_SYMP),
                         obj.getString(Record.REC_TEST), obj.getString(Record.REC_DATE));
                 recordList.add(record);
             }
@@ -115,11 +115,11 @@ public class Record implements Serializable {
         this.id = id;
     }
 
-    public double getTemp() {
+    public String getTemp() {
         return temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(String temp) {
         this.temp = temp;
     }
 

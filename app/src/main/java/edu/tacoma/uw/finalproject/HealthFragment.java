@@ -91,7 +91,7 @@ public class HealthFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.health_fab);
         fab.setOnClickListener(new View.OnClickListener(){
 
             @Override

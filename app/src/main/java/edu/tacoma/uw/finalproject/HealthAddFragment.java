@@ -56,7 +56,7 @@ public class HealthAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        healthAddListener = (HealthAddListener) getActivity();
+//        healthAddListener = (HealthAddListener) getActivity();
     }
 
     @Override
@@ -84,6 +84,9 @@ public class HealthAddFragment extends Fragment {
                 String rec_test = filledTest.getText().toString();
                 String rec_date = filledDate.getText().toString();
 
+                Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
+                        Toast.LENGTH_SHORT).show();
+
                 if (temp < 90.0 || temp > 130.0){
                     Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
                             Toast.LENGTH_SHORT).show();
@@ -93,12 +96,14 @@ public class HealthAddFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                     filledSymp.requestFocus();
                 }else if(TextUtils.isEmpty(rec_test)
-                        || !rec_test.equalsIgnoreCase("Positive")
-                        || !rec_test.equalsIgnoreCase("Negative")
-                        || !rec_test.equalsIgnoreCase("N/A")){
+                        ){
                     Toast.makeText(v.getContext(), "Enter valid testing result (i.e. Positive, Negative, or N/A)",
                             Toast.LENGTH_SHORT).show();
-                    filledSymp.requestFocus();
+                    filledTest.requestFocus();
+
+//                    || !rec_test.equalsIgnoreCase("Positive")
+//                            || !rec_test.equalsIgnoreCase("Negative")
+//                            || !rec_test.equalsIgnoreCase("N/A")
                 }else{
                     Record record = new Record(recID, username, temp, symp,rec_test, rec_date);
                     if (healthAddListener != null){

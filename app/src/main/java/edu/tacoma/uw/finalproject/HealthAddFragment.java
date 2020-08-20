@@ -97,29 +97,26 @@ public class HealthAddFragment extends Fragment {
                 String rec_test = filledTest.getText().toString();
                 String rec_date = filledDate.getText().toString();
 
-//                if (temp < 90.0 || temp > 130.0){
-//                    Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
-//                            Toast.LENGTH_SHORT).show();
-//                    filledTemp.requestFocus();
-//                }else
+                if (temp < 90.0 || temp > 130.0){
+                    Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
+                            Toast.LENGTH_SHORT).show();
+                    filledTemp.requestFocus();
+                }else
                     if(TextUtils.isEmpty(symp)){
                     Toast.makeText(v.getContext(), "Enter valid symptom, enter N/A if not applicable",
                             Toast.LENGTH_SHORT).show();
                     filledSymp.requestFocus();
                 }else if(TextUtils.isEmpty(rec_test)
-                        ){
+                         || (!rec_test.equalsIgnoreCase("Positive")
+                            && !rec_test.equalsIgnoreCase("Negative")
+                            && !rec_test.equalsIgnoreCase("N/A")))
+                        {
                     Toast.makeText(v.getContext(), "Enter valid testing result (i.e. Positive, Negative, or N/A)",
                             Toast.LENGTH_SHORT).show();
                     filledTest.requestFocus();
-
-//                    || !rec_test.equalsIgnoreCase("Positive")
-//                            || !rec_test.equalsIgnoreCase("Negative")
-//                            || !rec_test.equalsIgnoreCase("N/A")
                 }else{
 
-                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE2");
                     Record record = new Record(recID, username, temp, symp,rec_test, rec_date);
-                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE2.5");
 
                         StringBuilder url = new StringBuilder(getString(R.string.add_record));
                         recJSON = new JSONObject();
@@ -128,12 +125,9 @@ public class HealthAddFragment extends Fragment {
                             recJSON.put(Record.REC_USERNAME, record.getUsername());
                             recJSON.put(Record.REC_TEMP, record.getTemp());
                             recJSON.put(Record.REC_SYMP, record.getSymp());
-                            recJSON.put(Record.REC_TEST, record.getUsername());
+                            recJSON.put(Record.REC_TEST, record.getRecTest());
                             recJSON.put(Record.REC_DATE, record.getRecDate());
                             new RecordAddAsyncTask().execute(url.toString());
-
-                            Toast.makeText(getContext(), "Here2"
-                                    , Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
 
@@ -142,14 +136,6 @@ public class HealthAddFragment extends Fragment {
                                     Toast.LENGTH_SHORT).show();
                         }
 
-
-
-
-//                    if (healthAddListener != null){
-//                        Log.i("HealthAddF", "HEEEEERRRRRRRRRRRE3");
-//                        healthAddListener.addHealth(record);
-//
-//                    }
                 }
             }
         });

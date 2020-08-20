@@ -72,7 +72,6 @@ public class SignInTest {
 
     }
 
-
     @Test
     public void testInValidLoginPassword(){
         Random random = new Random();
@@ -92,5 +91,4 @@ public class SignInTest {
                         getWindow().getDecorView())))).check(matches(isDisplayed()));
 
     }
-
 }

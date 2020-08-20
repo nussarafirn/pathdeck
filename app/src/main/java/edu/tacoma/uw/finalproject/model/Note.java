@@ -227,10 +227,11 @@ public class Note implements Serializable {
      * @param mNoteLocation
      */
     public void setNoteLocation(String mNoteLocation) {
-        if (mNoteLocation.isEmpty()) {
-            throw new IllegalArgumentException("location cannot be empty");
-        } else {
+        if (!mNoteLocation.isEmpty()) {
             this.mNoteLocation = mNoteLocation;
+        } else {
+            throw new IllegalArgumentException("location cannot be empty");
+
 
         }
     }

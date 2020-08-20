@@ -37,7 +37,7 @@ public class NoteAddFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private SharedPreferences mSharedPreferences;
-    public final static String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
+    public final static String SIGN_IN_FILE_PREFS= "edu.tacoma.uw.finalproject.sign_in_file_prefs";
     private NoteListActivity passUsername;
     // TODO: Rename and change types of parameters
     private String mParam1;

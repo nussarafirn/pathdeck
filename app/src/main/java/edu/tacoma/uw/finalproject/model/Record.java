@@ -30,7 +30,7 @@ public class Record implements Serializable {
     /**
      * present the user's body temperature in Records table
      */
-    private String temp;
+    private double temp;
 
     /**
      * present the user's symptoms  in Records table
@@ -47,7 +47,7 @@ public class Record implements Serializable {
 
     public static final String REC_ID = "recordid";
     public static final String REC_USERNAME = "username";
-    public static final String REC_TEMP = "temp";
+    public static final double REC_TEMP = 0.0;
     public static final String REC_SYMP = "symp";
     public static final String REC_TEST = "rec_test";
     public static final String REC_DATE = "rec_date";
@@ -61,7 +61,7 @@ public class Record implements Serializable {
      * @param rec_test
      * @param rec_date
      */
-    public Record(String id, String username, String temp, String symp, String rec_test, String rec_date) {
+    public Record(String id, String username, double temp, String symp, String rec_test, String rec_date) {
         this.id = id;
         this.username = username;
         this.temp = temp;
@@ -90,7 +90,7 @@ public class Record implements Serializable {
                 JSONObject obj = arr.getJSONObject(i);
                 //using note fields to get JSON strong object
                 Record record = new Record(obj.getString(Record.REC_ID), obj.getString(Record.REC_USERNAME),
-                        obj.getString(Record.REC_TEMP), obj.getString(Record.REC_SYMP),
+                        obj.getDouble(String.valueOf(Record.REC_TEMP)), obj.getString(Record.REC_SYMP),
                         obj.getString(Record.REC_TEST), obj.getString(Record.REC_DATE));
                 recordList.add(record);
             }
@@ -115,11 +115,11 @@ public class Record implements Serializable {
         this.id = id;
     }
 
-    public String getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(String temp) {
+    public void setTemp(double temp) {
         this.temp = temp;
     }
 

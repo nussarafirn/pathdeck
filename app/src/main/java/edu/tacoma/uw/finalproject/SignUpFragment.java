@@ -15,6 +15,10 @@ import edu.tacoma.uw.finalproject.model.User;
 /**
  * This class represents the sign up fragment that register a user based on
  * information that they fill
+ *
+ * Author: Firn Tieanklin
+ * Version: 2.0
+ * Date: 08/10/20
  */
 public class SignUpFragment extends Fragment {
 

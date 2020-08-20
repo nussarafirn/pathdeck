@@ -9,18 +9,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -32,15 +28,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import edu.tacoma.uw.finalproject.authenticate.LoginFragment;
-import edu.tacoma.uw.finalproject.model.Note;
 import edu.tacoma.uw.finalproject.model.Record;
 
 /**
@@ -49,6 +39,7 @@ import edu.tacoma.uw.finalproject.model.Record;
  * create an instance of this fragment.
  */
 public class HealthFragment extends Fragment {
+
     /**
      * The test card area that show positive or negative
      */
@@ -57,6 +48,7 @@ public class HealthFragment extends Fragment {
      * The list contain all the record that have been enter by user
      */
     private List<Record> mRecordList;
+
     /**
      * access to the username that have been save
      */
@@ -81,6 +73,7 @@ public class HealthFragment extends Fragment {
      * hold the current login username
      */
     private String username;
+
     public HealthFragment() {
         // Required empty public constructor
     }
@@ -124,7 +117,7 @@ public class HealthFragment extends Fragment {
         mSharedPreferences = this.getActivity().getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
         username = mSharedPreferences.getString("username", null);
 
-        card_test.setOnClickListener(new View.OnClickListener(){
+        card_test.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -134,7 +127,7 @@ public class HealthFragment extends Fragment {
         });
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.health_fab);
-        fab.setOnClickListener(new View.OnClickListener(){
+        fab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -150,22 +143,22 @@ public class HealthFragment extends Fragment {
     public void launchHealthAddFragment(){
         HealthAddFragment healthAddFragment = new HealthAddFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, healthAddFragment).commit();
+                .replace(R.id.fragment_container, healthAddFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     /**
      * passing the urls to recordTask to get the recordList
      */
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         new RecordTask().execute(getString(R.string.get_record));
 
 
     }
-    /**
-     * class that take the urls string, read the urls and return the json array.
-     */
+
     private class RecordTask extends AsyncTask<String, Void, String> {
 
         /**
@@ -193,8 +186,7 @@ public class HealthFragment extends Fragment {
                 } catch (Exception e) {
                     response = "Unable to download the list of courses, Reason: "
                             + e.getMessage();
-                }
-                finally {
+                } finally {
                     if (urlConnection != null)
                         urlConnection.disconnect();
                 }
@@ -218,11 +210,11 @@ public class HealthFragment extends Fragment {
                 if (jsonObject.getBoolean("success")) {
                     mRecordList = Record.parseRecJson(
                             jsonObject.getString("records"));
-                    if(!mRecordList.isEmpty()){
+                    if (!mRecordList.isEmpty()) {
                         //setupRecyclerView((RecyclerView) mRecyclerView);
                     }
                 }
-                temp.setText(getTemp() +" °F");
+                temp.setText(getTemp() + " °F");
                 symptom.setText(getSymp());
                 testResult.setText(getTestResult());
             } catch (JSONException e) {

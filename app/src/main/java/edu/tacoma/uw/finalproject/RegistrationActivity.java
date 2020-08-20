@@ -22,6 +22,10 @@ import edu.tacoma.uw.finalproject.model.User;
 
 /**
  * This class will sign up a user base on the given information
+ *
+ * Author: Firn Tieanklin
+ * Version: 2.0
+ * Date: 08/10/20
  */
 public class RegistrationActivity extends AppCompatActivity
             implements SignUpFragment.AddListener {
@@ -79,6 +83,13 @@ public class RegistrationActivity extends AppCompatActivity
      * This AsyncTask will sign up the user by connecting to the database
      */
     private class AddUserAsyncTask extends AsyncTask<String, Void, String> {
+
+        /**
+         * Connects to the backend to prepare the registration process
+         *
+         * @param urls the url to connnect to POST method of the database
+         * @return error if was not successful
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -121,32 +132,37 @@ public class RegistrationActivity extends AppCompatActivity
             return response;
         }
 
-    @Override
-    protected void onPostExecute(String s) {
-        if (s.startsWith("Unable to add the new user")) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        try {
+        /**
+         * Registering a new user with given input personal information
+         *
+          * @param s
+         */
+        @Override
+        protected void onPostExecute(String s) {
+            if (s.startsWith("Unable to add the new user")) {
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
 
-            JSONObject jsonObject = new JSONObject(s);
-            if (jsonObject.getBoolean("success")) {
-                Toast.makeText(getApplicationContext(), "RegistrationActivity successful"
-                        , Toast.LENGTH_SHORT).show();
-                finish();
-            }
-            else {
-                Toast.makeText(getApplicationContext(), "User couldn't be added: "
-                                + jsonObject.getString("error")
+                JSONObject jsonObject = new JSONObject(s);
+                if (jsonObject.getBoolean("success")) {
+                    Toast.makeText(getApplicationContext(), "RegistrationActivity successful"
+                            , Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "User couldn't be added: "
+                                    + jsonObject.getString("error")
+                            , Toast.LENGTH_LONG).show();
+                    Log.e(SIGN_UP, jsonObject.getString("error"));
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), "JSON Parsing error on registering a new user"
+                                + e.getMessage()
                         , Toast.LENGTH_LONG).show();
-                Log.e(SIGN_UP, jsonObject.getString("error"));
+                Log.e(SIGN_UP, e.getMessage());
             }
-        } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "JSON Parsing error on registering a new user"
-                            + e.getMessage()
-                    , Toast.LENGTH_LONG).show();
-            Log.e(SIGN_UP, e.getMessage());
-        }
     }
     }
 }

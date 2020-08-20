@@ -74,6 +74,11 @@ public class HealthFragment extends Fragment {
      */
     private String username;
 
+    /**
+     * Temperature evaluation base on normal body temperature
+     */
+    private TextView tempState;
+
     public HealthFragment() {
         // Required empty public constructor
     }
@@ -112,7 +117,7 @@ public class HealthFragment extends Fragment {
         temp = view.findViewById(R.id.temp_text);
         symptom = view.findViewById(R.id.symptom_text);
         testResult = view.findViewById(R.id.test_text);
-        //tempState = view.findViewById(R.id.bodyState_text);
+        tempState = view.findViewById(R.id.bodyState_text);
 
         mSharedPreferences = this.getActivity().getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
         username = mSharedPreferences.getString("username", null);
@@ -217,6 +222,7 @@ public class HealthFragment extends Fragment {
                 temp.setText(getTemp() + " °F");
                 symptom.setText(getSymp());
                 testResult.setText(getTestResult());
+                tempState.setText(getTempState());
             } catch (JSONException e) {
                 Toast.makeText(getActivity(), "JSON Error: " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
@@ -229,11 +235,11 @@ public class HealthFragment extends Fragment {
      * return the newest temperature that been enter from the user
      * @return temperature type string
      */
-    private String getTemp() {
-        List<String> tempList = new ArrayList<>();
+    private double getTemp() {
+        List<Double> tempList = new ArrayList<>();
         for (Record each : mRecordList) {
             if (each.getUsername().equalsIgnoreCase(username)) {
-                tempList.add(String.valueOf(each.getTemp()));
+                tempList.add(each.getTemp());
             }
         }
 
@@ -267,5 +273,18 @@ public class HealthFragment extends Fragment {
             }
         }
         return testRecList.get(testRecList.size()-1);
+    }
+
+    private String getTempState() {
+        double temp = getTemp();
+        String s = "";
+
+        if (temp > 99) {
+            s = "Dangerous, may have fever!";
+        } else {
+            s = "Normal";
+        }
+
+        return s;
     }
 }

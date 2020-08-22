@@ -60,8 +60,7 @@ public class emailNotifyActivity extends AppCompatActivity {
     /**
      * contain the note list in the notes table
      */
-    private List<Note> mNoteList;
-    /**
+    private List<Note> mNoteList;/**
      * access to the username that have been save
      */
     public SharedPreferences mSharedPreferences;

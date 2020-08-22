@@ -24,6 +24,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.tacoma.uw.finalproject.model.Record;
 
@@ -78,6 +80,7 @@ public class HealthAddFragment extends Fragment {
         final EditText filledSymp = v.findViewById(R.id.health_add_symp);
         final EditText filledTest = v.findViewById(R.id.health_add_test);
         final EditText filledDate = v.findViewById(R.id.health_add_date);
+        filledDate.setText(setCurrentDay(new Date()));
         Button updateButton = v.findViewById(R.id.btn_update_health);
 
         updateButton.setOnClickListener(new View.OnClickListener() {
@@ -85,13 +88,17 @@ public class HealthAddFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String recID = "";
-                double temp = Double.parseDouble(filledTemp.getText().toString());
+                double temp;
+                if(!filledTemp.getText().toString().isEmpty()){
+                    temp = Double.parseDouble(filledTemp.getText().toString());
+                }else{
+                    temp =0;
+                }
                 String username = mSharedPreferences.getString("username", null);
                 String symp = filledSymp.getText().toString();
                 String rec_test = filledTest.getText().toString();
                 String rec_date = filledDate.getText().toString();
-
-                if (temp < 90.0 || temp > 130.0) {
+                if (temp < 90.0 || temp > 130.0 || temp == 0.0) {
                     Toast.makeText(v.getContext(), "Enter valid body temperature (97-99 °F)",
                             Toast.LENGTH_SHORT).show();
                     filledTemp.requestFocus();
@@ -134,6 +141,15 @@ public class HealthAddFragment extends Fragment {
         return v;
     }
 
+    /**
+     * format the date in the date text field
+     * @param date
+     * @return
+     */
+    public String setCurrentDay(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        return sdf.format(date);
+    }
     /**
      * This class will update the new health record of the user based on the provided information
      */

@@ -4,11 +4,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import edu.tacoma.uw.finalproject.model.User;
 
@@ -78,7 +80,49 @@ public class SignUpFragment extends Fragment {
                 String email = emailEditText.getText().toString();
                 String phone = phoneEditText.getText().toString();
                 User user = new User(firstN, lastN, userN, pwd, email, phone);
-                if (mSignUpListener != null) {
+
+                if (TextUtils.isEmpty(firstN)) {        // validate Fisrt Name
+                    Toast.makeText(v.getContext(),
+                            "Enter valid first name"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    firstNEditText.requestFocus();
+
+                } else if (TextUtils.isEmpty(lastN)) {  // validate password
+                    Toast.makeText(v.getContext()
+                            , "Enter valid lastname)"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    lastNEditText.requestFocus();
+
+                } else if (TextUtils.isEmpty(userN)) {  // validate password
+                    Toast.makeText(v.getContext()
+                            , "Enter valid username)"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    userNEditText.requestFocus();
+
+                } else if (TextUtils.isEmpty(pwd) || pwd.length() < 6) {  // validate password
+                    Toast.makeText(v.getContext()
+                            , "Enter valid password (at least 6 characters)"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                        pwdEditText.requestFocus();
+                } else if (TextUtils.isEmpty(email) || !email.contains("@")) {        // validate email
+                        Toast.makeText(v.getContext(), "Enter valid email address"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                        emailEditText.requestFocus();
+                } else if (TextUtils.isEmpty(phone) ||phone.length() != 10) {        // validate phone
+                    Toast.makeText(v.getContext(),
+                            "Enter valid phone number in format XXXXXXXXXX (10 characters))"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                        phoneEditText.requestFocus();
+                }
+
+
+                    if (mSignUpListener != null) {
                     mSignUpListener.signUp(user);
                 }
             }

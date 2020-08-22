@@ -1,10 +1,12 @@
-package edu.tacoma.uw.finalproject.model;
+package edu.tacoma.uw.finalproject;
 
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.tacoma.uw.finalproject.model.Note;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;

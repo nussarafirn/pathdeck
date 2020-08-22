@@ -124,10 +124,12 @@ public class NoteAddFragment extends Fragment {
                 String noteEmail = noteEmailEditText.getText().toString();
                 String noteDate = noteDateEditText.getText().toString();
                 String noteLocation = noteLocationEditText.getText().toString();
-                if (TextUtils.isEmpty(noteEmail) || !noteEmail.contains("@")){
+                if(TextUtils.isEmpty(noteWho) || TextUtils.isEmpty(noteLocation)){
+                    Toast.makeText(v.getContext(), "Missing require information. Enter name and location", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(noteEmail) || !noteEmail.contains("@")){
                     Toast.makeText(v.getContext(), "Enter valid email address", Toast.LENGTH_SHORT).show();
                     noteEmailEditText.requestFocus();
-                }else if(TextUtils.isEmpty(notePhone) || notePhone.length() > 10 ){
+                }else if(TextUtils.isEmpty(notePhone) || notePhone.length() != 10){
                     Toast.makeText(v.getContext(), "Enter valid phone number with 10 digits in format XXXXXXXXXX", Toast.LENGTH_SHORT).show();
                     noteEmailEditText.requestFocus();
                 }else{

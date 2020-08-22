@@ -70,6 +70,15 @@ public class NoteListActivity extends AppCompatActivity {
      * use to display the item in list view
      */
     private RecyclerView mRecyclerView;
+    /**
+     * contain the note list in the notes table
+     */
+    public SharedPreferences mSharedPreferences;
+    /*
+     * The file stores user information
+     */
+    public final String SIGN_IN_FILE_PREFS = "edu.tacoma.uw.finalproject.sign_in_file_prefs";
+
 
     /**
      * create all the interface for the UI and launch the NoteAddFragment
@@ -94,7 +103,7 @@ public class NoteListActivity extends AppCompatActivity {
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
         }
-
+        mSharedPreferences = getSharedPreferences(SIGN_IN_FILE_PREFS, Context.MODE_PRIVATE);
         mRecyclerView = findViewById(R.id.item_list);
         assert mRecyclerView != null;
         setupRecyclerView((RecyclerView) mRecyclerView);
@@ -314,6 +323,7 @@ public class NoteListActivity extends AppCompatActivity {
          */
         @Override
         protected void onPostExecute(String s) {
+            String username = mSharedPreferences.getString("username", null);
             if (s.startsWith("Unable to")) {
                 Toast.makeText(getApplicationContext(), "Unable to download" + s, Toast.LENGTH_SHORT)
                         .show();
@@ -321,11 +331,19 @@ public class NoteListActivity extends AppCompatActivity {
             }
             try {
                 JSONObject jsonObject = new JSONObject(s);
-
                 if (jsonObject.getBoolean("success")) {
                     mNoteList = Note.parseNoteJson(
                             jsonObject.getString("notes"));
+
                     if(!mNoteList.isEmpty()){
+                        List<Note> temp = new ArrayList<>();
+                        for(Note each : mNoteList){
+                            if(each.getUsername().equals(username)){
+                                temp.add(each);
+                            }
+                        }
+                        mNoteList.clear();
+                        mNoteList = temp;
                         setupRecyclerView((RecyclerView) mRecyclerView);
                     }
                 }

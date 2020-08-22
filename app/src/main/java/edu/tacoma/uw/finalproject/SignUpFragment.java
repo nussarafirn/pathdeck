@@ -66,7 +66,7 @@ public class SignUpFragment extends Fragment {
         final EditText lastNEditText = v.findViewById(R.id.lastname);
         final EditText userNEditText = v.findViewById(R.id.username);
         final EditText pwdEditText = v.findViewById(R.id.password);
-        final EditText confirmPwdEditText = v.findViewById(R.id.password);
+        final EditText confirmPwdEditText = v.findViewById(R.id.confirm_password);
         final EditText emailEditText = v.findViewById(R.id.email);
         final EditText phoneEditText = v.findViewById(R.id.phone);
         Button signUpButton = v.findViewById(R.id.sign_up_button);
@@ -92,14 +92,14 @@ public class SignUpFragment extends Fragment {
 
                 } else if (TextUtils.isEmpty(lastN)) {  // validate password
                     Toast.makeText(v.getContext()
-                            , "Enter valid lastname)"
+                            , "Enter valid lastname"
                             , Toast.LENGTH_SHORT)
                             .show();
                     lastNEditText.requestFocus();
 
                 } else if (TextUtils.isEmpty(userN)) {  // validate password
                     Toast.makeText(v.getContext()
-                            , "Enter valid username)"
+                            , "Enter valid username"
                             , Toast.LENGTH_SHORT)
                             .show();
                     userNEditText.requestFocus();
@@ -111,7 +111,7 @@ public class SignUpFragment extends Fragment {
                             .show();
                     pwdEditText.requestFocus();
 
-                } else if (pwdEditText.equals(confirmPwd)) {  // validate confirm pwd
+                } else if (!pwd.equals(confirmPwd)) {  // validate confirm pwd
                     Toast.makeText(v.getContext()
                             , "Password doesn't match"
                             , Toast.LENGTH_SHORT)
@@ -124,7 +124,7 @@ public class SignUpFragment extends Fragment {
                         emailEditText.requestFocus();
                 } else if (TextUtils.isEmpty(phone) ||phone.length() != 10) {        // validate phone
                     Toast.makeText(v.getContext(),
-                            "Enter valid phone number in format XXXXXXXXXX (10 characters))"
+                            "Enter valid phone number in format XXXXXXXXXX (10 characters)"
                             , Toast.LENGTH_SHORT)
                             .show();
                         phoneEditText.requestFocus();

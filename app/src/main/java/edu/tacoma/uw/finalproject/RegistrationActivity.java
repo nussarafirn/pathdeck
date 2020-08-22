@@ -74,8 +74,7 @@ public class RegistrationActivity extends AppCompatActivity
             mUserJSON.put(User.PHONE, user.getPhone());
             new AddUserAsyncTask().execute(url.toString());
         } catch (JSONException e) {
-                Toast.makeText(this,
-                        "This account was already registered, please enter a unique username, email, and phone number.",
+                Toast.makeText(this, "Error with JSON creation on adding a user" + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
         }
     }
@@ -153,8 +152,7 @@ public class RegistrationActivity extends AppCompatActivity
                     finish();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "User couldn't be added: "
-                                    + jsonObject.getString("error")
+                    Toast.makeText(getApplicationContext(), "This account was already registered, please enter a unique username, email, and phone number."
                             , Toast.LENGTH_LONG).show();
                     Log.e(SIGN_UP, jsonObject.getString("error"));
                 }

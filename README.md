@@ -29,8 +29,8 @@ Here are the list of testing accounts to test the funtionality of the applicatio
     - Username: user
     - Password : 12345678
 - User #2
-    - Username: firn
-    - Password : firn1234
+    - Username: firntest
+    - Password : 12345678
 
 ###SharedPreferences
 The sharedPrefences save the username and wether if the account is set to remember. The sharereference have been user in all the activity and fragment class
@@ -43,5 +43,6 @@ Updated error fixed on 7/8/20
 
  The error has been fix from the backend code in Register.js inside the INSERT statement. The prvious version doesn't specify the parameters, but that was required since the user input were not directly map to the table fields. 
 
-Updated 8/20/20
-no errors
+Updated 8/21/20
+
+Bug fixed on adding a COVID note with invalid information. We have a toast message to handle the exception insteads of the throwing the exceptions. We also adding validation for the registration and health update information page by having an informative mesage telling users the expected format of the input. Lastly, the health page is now be able to view with defult values for the new users.

@@ -66,6 +66,7 @@ public class SignUpFragment extends Fragment {
         final EditText lastNEditText = v.findViewById(R.id.lastname);
         final EditText userNEditText = v.findViewById(R.id.username);
         final EditText pwdEditText = v.findViewById(R.id.password);
+        final EditText confirmPwdEditText = v.findViewById(R.id.password);
         final EditText emailEditText = v.findViewById(R.id.email);
         final EditText phoneEditText = v.findViewById(R.id.phone);
         Button signUpButton = v.findViewById(R.id.sign_up_button);
@@ -77,6 +78,7 @@ public class SignUpFragment extends Fragment {
                 String lastN = lastNEditText.getText().toString();
                 String userN = userNEditText.getText().toString();
                 String pwd = pwdEditText.getText().toString();
+                String confirmPwd = confirmPwdEditText.getText().toString();
                 String email = emailEditText.getText().toString();
                 String phone = phoneEditText.getText().toString();
                 User user = new User(firstN, lastN, userN, pwd, email, phone);
@@ -107,7 +109,14 @@ public class SignUpFragment extends Fragment {
                             , "Enter valid password (at least 6 characters)"
                             , Toast.LENGTH_SHORT)
                             .show();
-                        pwdEditText.requestFocus();
+                    pwdEditText.requestFocus();
+
+                } else if (pwdEditText.equals(confirmPwd)) {  // validate confirm pwd
+                    Toast.makeText(v.getContext()
+                            , "Password doesn't match"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    confirmPwdEditText.requestFocus();
                 } else if (TextUtils.isEmpty(email) || !email.contains("@")) {        // validate email
                         Toast.makeText(v.getContext(), "Enter valid email address"
                                 , Toast.LENGTH_SHORT)
@@ -119,10 +128,7 @@ public class SignUpFragment extends Fragment {
                             , Toast.LENGTH_SHORT)
                             .show();
                         phoneEditText.requestFocus();
-                }
-
-
-                    if (mSignUpListener != null) {
+                } else if (mSignUpListener != null) {
                     mSignUpListener.signUp(user);
                 }
             }

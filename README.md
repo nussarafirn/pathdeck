@@ -1,5 +1,4 @@
 # PathDeck
-**Team #11**  Firn Tieanklin and Kieu Trihn
 
 ## Features
 - Users will be able to login using the registered username and password credentials. 

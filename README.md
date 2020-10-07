@@ -10,12 +10,12 @@
 ## User Stories
 
 ### High Priority
-US01: As a person that meets friends and family often, I want to be able to track whom I was with, so that I can keep track and look back into my diary to see who I was with and what I was doing at the time.  
-US02: As a person who cares about others, I want the notes to keep track of my activities in the 14 days period so that I can quickly notify people when I get infected .
-US03: As a person who is concerned about the COVID-19, I want to have an option to notify people who I got in contact with in the last 14 days or when I notice the symptoms. So that those people could get tested reducing the spread to their friends and family. 
-US04: As a person who gets sick and has a headache often, I want to be able to track my health, symptoms, body temperature etc. So that I can differentiate the symbols between my regular headache and any additional symptoms that would relate to COVID-19. 
-US05 - As a person who concerns about my privacy, I as a user want to be able to sign in authentication to use the service and sign out after I finish. So that I can make sure no one else other than me has access to my personal information regarding people that I was in contact with and when/where I have been. 
-US06 As a user, I want to be able to sign up for a new account so that I can have a new account when I need it for other purposes.
+- As a person that meets friends and family often, I want to be able to track whom I was with, so that I can keep track and look back into my diary to see who I was with and what I was doing at the time.  
+- As a person who cares about others, I want the notes to keep track of my activities in the 14 days period so that I can quickly notify people when I get infected .
+- As a person who is concerned about the COVID-19, I want to have an option to notify people who I got in contact with in the last 14 days or when I notice the symptoms. So that those people could get tested reducing the spread to their friends and family. 
+- As a person who gets sick and has a headache often, I want to be able to track my health, symptoms, body temperature etc. So that I can differentiate the symbols between my regular headache and any additional symptoms that would relate to COVID-19. 
+- As a person who concerns about my privacy, I as a user want to be able to sign in authentication to use the service and sign out after I finish. So that I can make sure no one else other than me has access to my personal information regarding people that I was in contact with and when/where I have been. 
+- As a user, I want to be able to sign up for a new account so that I can have a new account when I need it for other purposes.
 
 ### Low Priority
 - As a user, I want to be able to choose which notes I want to use so that I can separate my memo notes and covid. 
